@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color:  #6F4E37; /* Define the primary color variable */
+  --page-bg-color: #E4EBFB;
+  --login-bg-color: #e4ebfb;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputs-error-msg{
+  color: red;
+  font-size: 12px;
+}

@@ -1,0 +1,118 @@
+/* cusTable.css
+-------------- */
+
+.table_search_form {
+  display: flex;
+  align-items: center;
+}
+.table_search_label {
+  padding-left: -9999999px;
+}
+
+/* h3, form {
+    margin: 0;
+  } */
+
+/* form {
+    display: flex; 
+    justify-content: flex-end;
+  } */
+
+.Table_heading {
+  font-size: 1.45rem;
+  font-weight: 650;
+}
+.table_search_grid {
+  display: flex;
+  justify-content: flex-end;
+}
+.table_search {
+  /* text-align: center; */
+  width: 30%;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: -7%;
+}
+.nav_pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+.custom-table {
+  font-size: 12px;
+  /* text-align: center; */
+  margin-top: 0;
+  margin-bottom: 0;
+  /* border: 1px solid rgba(111 78 55); */
+  /* opacity: 0.5; */
+  /* box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.5); */
+
+}
+.thead_data {
+  color: #959595;
+  /* background-color: brown; */
+}
+.pagination {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.pagination .page-item {
+  display: inline;
+  margin-right: 5px;
+  /* border: 1px solid blue; */
+}
+
+.pagination .page-link {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  color: #6F4E37;
+  font-weight: 650;
+}
+.custom-table td,
+th {
+  padding: 7px !important;
+  /* border-bottom: 1px solid rgb(88, 68, 53); */
+  /* box-shadow: 0 0 0 2px rgba(111 78 55  0.9); */
+  
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+.search-container input[type="text"] {
+  padding-left: 30px; /* Adjust as necessary */
+}
+
+.Table_search_input {
+  width: 150px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 9px;
+  padding: 5px;
+  font-size: 14px;
+  background-color: #f4f7fe;
+
+  border: none;
+}
+
+.Table_search_input::placeholder {
+  color: rgba(0, 0, 0, 0.3); /* Adjust placeholder color */
+}
+.Table_search_input:focus {
+  outline: 1px solid black;
+}
+
