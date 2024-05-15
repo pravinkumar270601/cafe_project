@@ -193,6 +193,14 @@ const Timesheet = () => {
     setRowTableData2(tempArr);
   }, [TimeSheetGetAll]);
 
+  const predefinedSuggestions = [
+    { value: 1, label: "Apple" },
+    { value: 2, label: "Banana" },
+    { value: 3, label: "Orange" },
+    { value: 4, label: "Pineapple" },
+    { value: 5, label: "Grapes" },
+  ];
+
   return (
     <div
       className="Timesheet-div"
@@ -299,13 +307,8 @@ const Timesheet = () => {
                         selectEmployeeIdfn={selectEmployeeIdfn}
                       />
                       {/* <CustomSearchInput
-                        predefinedSuggestions={[
-                          { value: 1, label: "Apple" },
-                          { value: 2, label: "Banana" },
-                          { value: 3, label: "Orange" },
-                          { value: 4, label: "Pineapple" },
-                          { value: 5, label: "Grapes" },
-                        ]}
+                        predefinedSuggestions={predefinedSuggestions}
+                        
                       /> */}
                     </Grid>
                     <Grid
@@ -406,6 +409,7 @@ const Timesheet = () => {
                   Tabledata={rowTableData2}
                   TableTittle="Overview"
                   showEmpDetails={false}
+                  showActions={false}
                   // handleDeleteIdChange={handleDeleteIdChange}
                 />
               </Grid>

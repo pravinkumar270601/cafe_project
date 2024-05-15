@@ -1,67 +1,38 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field } from 'formik';
+import React from 'react';
+import { Field, ErrorMessage } from 'formik';
 
-const CustomSearchInput = ({ predefinedSuggestions }) => {
-  const [searchResults, setSearchResults] = useState([]);
-  const [selectedSuggestion, setSelectedSuggestion] = useState('');
-
-  const handleSearch = (value) => {
-    if (value.trim() !== '') {
-      const filteredResults = predefinedSuggestions.filter(suggestion =>
-        suggestion.name.toLowerCase().includes(value.toLowerCase())
-      );
-      setSearchResults(filteredResults);
-    } else {
-      setSearchResults([]);
-    }
-  };
-
+const CustomSearchInput = ({ label, name, predefinedSuggestions, ...rest }) => {
   return (
-    <div>
-   
-      <Formik
-        initialValues={{ searchTerm: '' }}
-        onSubmit={({ resetForm }) => {
-          resetForm();
-          setSelectedSuggestion('');
-          setSearchResults([]);
-        }}
-      >
-        {({ handleChange, setFieldValue }) => (
-          <Form>
-            <Field
+    <div style={{ width: "100%" }}>
+      <div>
+        <label htmlFor={name} className="input-heading">
+          {label}
+        </label>
+      </div>
+      <Field name={name}>
+        {() => (
+          <div>
+            <input
+              {...rest}
               type="text"
-              name="searchTerm"
-            //   placeholder="Enter Id"
-              value={selectedSuggestion} // Only use selectedSuggestion here
+              name={name} // Using the name prop directly
+              placeholder="Search..."
+              style={{ color: 'black', width: '200px', height: '35px', borderRadius: '10px', border: "1px solid grey" }}
               onChange={(e) => {
-                const { value } = e.target;
-                handleChange(e);
-                handleSearch(value);
-                setSelectedSuggestion(value); // Set selectedSuggestion to the input value
+                // Custom logic if needed
               }}
-              style={{ color: 'black', width: '200px', height: '35px', borderRadius: '10px',border:"1px solid grey" }}
             />
-            {searchResults.length > 0 && (
-              <div style={{boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
-                {searchResults.map((result) => (
-                  <div key={result.id} onClick={() => {
-                    setSelectedSuggestion(result.name);
-                    console.log("Selected suggestion id:", result.id); // Log the ID to the console
-                    setSearchResults([]);
-                    setFieldValue('searchTerm', result.name);
-                    setSelectedSuggestion(''); // Clear the field after getting the ID
-                  }} >
-                    <Field type="hidden" name={`suggestion_${result.id}`} id={`suggestion_${result.id}`} value={result.name} />
-                    {result.name}
-                  </div>
-                ))}
-              </div>
-            )}
-           
-          </Form>
+            <ErrorMessage name={name} component="div" />
+          </div>
         )}
-      </Formik>
+      </Field>
+      <div style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>
+        {predefinedSuggestions.map((result) => (
+          <div key={result.value} >
+            {result.label}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

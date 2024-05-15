@@ -115,7 +115,7 @@ const ListOfLog = () => {
                         height: "30%",
                       }}
                     >
-                      <CustomDateInput label="End Date" name="date1" />
+                      <CustomDateInput label="To Date" name="date1" />
                     </Grid>
                     <Grid item xs={4}></Grid>
                     <Grid item xs={4}></Grid>

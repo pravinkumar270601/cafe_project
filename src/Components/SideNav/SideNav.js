@@ -160,7 +160,7 @@ function SideNav(props) {
               />
             </ListItemIcon>
             <ListItemText
-              primary="Record"
+              primary="Records"
               primaryTypographyProps={{
                 sx: {
                   color:

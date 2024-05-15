@@ -71,7 +71,7 @@ const Record = () => {
               }}
             >
               <div className="pages-h1 d-flex align-items-center">
-                <h1>Record</h1>
+                <h1>Records</h1>
               </div>
               <div className="d-flex align-items-center ">
                 <div>
@@ -105,7 +105,7 @@ const Record = () => {
               }}
             />
             <Tab
-              label="Hours record"
+              label="Hours Record"
               {...a11yProps("Hours_record")}
               sx={{ marginRight: "150px", textTransform: "none" }}
             />

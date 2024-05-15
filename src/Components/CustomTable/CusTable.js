@@ -16,7 +16,7 @@ import { GrFormPrevious } from "react-icons/gr";
 // import actions from "../../ReduxStore/actions/index";
 // import { useDispatch, useSelector } from "react-redux";
 
-const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToatalHours}) => {
+const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToatalHours,showActions}) => {
   // console.log(MASTER.TableVaues.map((datas)=>{datas.Sno})
   // console.log(TableHeading, "tableHeading...............");
   // console.log(Tabledata, "Tabledatsss...............");
@@ -192,7 +192,8 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
                           </td>
                         )
                     )}
-                    {/* <td>
+                    {showActions &&
+                    <td style={{ borderBottom: "2px solid rgba(88, 68, 53, 0.23)"}}>
                       <IoPencil
                       // onClick={()=>setmyDefaultFieldValues(datas.id)}
                         style={{
@@ -219,7 +220,7 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
                         }}
                       />
                       
-                    </td> */}
+                    </td>}
                   </tr>
                 ))}
               </tbody>

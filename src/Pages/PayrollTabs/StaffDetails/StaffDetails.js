@@ -105,8 +105,8 @@ const StaffDetails = () => {
                       }}
                     >
                       <CustomInputDisable
-                        label="Employee Name"
-                        name={"pravin"}
+                        label="Wages"
+                        name={" "}
                       />
                     </Grid>
                     <Grid item xs={4}></Grid>

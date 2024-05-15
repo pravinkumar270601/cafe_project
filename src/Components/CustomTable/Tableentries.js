@@ -7,6 +7,7 @@ export const CreateEmployeeTableHeaders = [
   "Check-Out Date",
   "Check-Out Time",
   "Status",
+  
 ];
 
 
