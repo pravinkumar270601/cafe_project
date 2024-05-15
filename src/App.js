@@ -7,7 +7,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>
+    <div style={{height:"100%"}}>
 
       <BrowserRouter>
       <Routes>

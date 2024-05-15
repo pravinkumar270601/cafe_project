@@ -70,8 +70,9 @@
   text-decoration: none;
   border: none;
   background-color: transparent;
-  color: #6F4E37;
+  color: var(--primary-color);
   font-weight: 650;
+  box-shadow: none; 
 }
 .custom-table td,
 th {

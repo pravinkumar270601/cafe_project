@@ -4,7 +4,7 @@
   height: 37px;
   width: 100% ;
   padding-left: 15px;
-  border-radius: 12px;
+  border-radius: 5px;
   font-size: 14px;
   outline: none; /* Remove outline when focused */
   border: 1px solid #ced4da; /* Add border style to replace outline */

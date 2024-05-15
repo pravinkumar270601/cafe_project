@@ -15,6 +15,8 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import CusTable from "../../Components/CustomTable/CusTable";
 import * as MASTER from "../../Components/CustomTable/Tableentries";
 import CustomInputDisable from "../../Components/CustomInputDisable/CustomInputDisable";
+import "./Timesheet";
+import CustomSearchInput from "../../Components/CustomInputSearch/CustomSearch";
 
 // import * as Yup from "yup";
 // import axios from "axios";
@@ -22,25 +24,30 @@ import CustomInputDisable from "../../Components/CustomInputDisable/CustomInputD
 
 const Timesheet = () => {
   const dispatch = useDispatch();
+  const [apiUpdateId, setapiUpdateId] = useState(null);
 
-  // const { TimeSheetCreate } = useSelector((state) => state?.TimeSheetCreate);
-  // const { TimeSheetUpdate } = useSelector((state) => state?.TimeSheetUpdate);
-  const { TimeSheetDropdown } = useSelector((state) => state?.TimeSheetDropdown);
-  console.log(TimeSheetDropdown,"TimeSheetDropdown");
+  const { TimeSheetCreate } = useSelector((state) => state?.TimeSheetCreate);
+  console.log(TimeSheetCreate, "TimeSheetCreate");
 
+  const { TimeSheetUpdate } = useSelector((state) => state?.TimeSheetUpdate);
+  console.log(TimeSheetUpdate, "TimeSheetUpdate");
+
+  const { TimeSheetDropdown } = useSelector(
+    (state) => state?.TimeSheetDropdown
+  );
+  // console.log(TimeSheetDropdown,"TimeSheetDropdown");
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     // Handle form submission
     console.log(values);
     // if (true) {
-    const data1 = {
-      data: { ...values },
-      method: "post",
-      apiName: "",
-    };
+    // const data1 = {
+    //   data: { ...values },
+    //   method: "post",
+    //   apiName: "createEmployee",
+    // };
 
     // dispatch(actions.TIMESHEETCREATE(data1));
-
 
     //   if (MovieCreate?.data) {
     //     triggerToast("Successfully Created!");
@@ -54,16 +61,15 @@ const Timesheet = () => {
     // updating fuction for data
 
     // if (changebtn === false) {
+    // console.log(apiUpdateId,"update ")
 
-      const data2 = {
-        data: { ...values },
-        method: "put",
-        apiName: ``,
-      };
+    const data2 = {
+      data: {},
+      method: "put",
+      apiName: `updateEmployee/${apiUpdateId}`,
+    };
 
-      // dispatch(actions.TIMESHEETUPDATE(data2));
-
-
+    dispatch(actions.TIMESHEETUPDATE(data2));
 
     //   setchangebtn(true);
     //   if (MovieUpdate?.data) {
@@ -104,57 +110,117 @@ const Timesheet = () => {
     setButton2Disabled(true);
   };
 
+  const [employeeName, setEmployeeName] = useState(" ");
   const selectEmployeeIdfn = (name, id) => {
     console.log(name, "selectmovieIdfn");
     console.log(id, "selectmovieIdfn");
+    setapiUpdateId(id);
+
+    const getemp_name = TimeSheetDropdown?.data?.filter(
+      (data) => data.id == id
+    );
+    setEmployeeName(getemp_name[0].name);
 
     const data1 = {
       data: { movie_id: id },
       method: "post",
       apiName: "dropdownCategory",
     };
+
     // console.log(data1);
     // dispatch(actions.CATEGORYDROPDOWN(data1));
   };
-
 
   useEffect(() => {
     const data = { data: {}, method: "get", apiName: "empDropDown" };
     dispatch(actions.TIMESHEETDROPDOWN(data));
   }, [dispatch]);
 
+  const [timeSheetDrop, setTimeSheetDrop] = useState([]);
+  useEffect(() => {
+    const tempArr = [];
+    TimeSheetDropdown?.data?.map((values, index) =>
+      tempArr.push({
+        value: values?.id,
+        label: values?.emp_unique_id,
+      })
+    );
+    setTimeSheetDrop(tempArr);
+  }, [TimeSheetDropdown]);
 
+  console.log(employeeName, "employeeName");
+  const { TimeSheetGetAll } = useSelector((state) => state?.TimeSheetGetAll);
+  // console.log(MoviesTableGetAll, "lllllllll");
+  useEffect(() => {
+    const data = { data: {}, method: "get", apiName: "getall" };
+    // console.log("Dispatching MOVIESTABLEGETALL action:", data);
+    dispatch(actions.TIMESHEETGETALL(data));
+    // console.log(data, "MOVIESTABLEGETALL.................");
+  }, [dispatch, TimeSheetUpdate, TimeSheetCreate]);
 
-  // const [timeSheetDrop, setTimeSheetDrop] = useState([]);
-  // useEffect(() => {
-  //   const tempArr = [];
-  //   TimeSheetDropdown?.data?.map((values, index) =>
-  //     tempArr.push({
-  //       value: values?.movie_id,
-  //       label: values?.movie_name,
-  //     })
-  //   );
-  //   setTimeSheetDrop(tempArr);
-  // }, [TimeSheetDropdown]);
+  const [rowTableData2, setRowTableData2] = useState([
+    {
+      Sno: "1",
+      EmployeeId: "---",
+      EmployeeName: "---",
+      Check_In_Date: "---",
+      Check_In_Time: "---",
+      Check_Out_Date: "---",
+      Check_Out_Time: "---",
+      Status: "---",
+    },
+  ]);
 
+  useEffect(() => {
+    const tempArr = [];
+    TimeSheetGetAll?.data?.map((data, index) => {
+      // const currentDate = new Date();
+      // const formattedDate = `${currentDate.getDate()} ${getMonthName(
+      //   currentDate.getMonth()
+      // )} ${currentDate.getFullYear()}`;
+      return tempArr.push({
+        id: data?.emp_id,
+        Sno: index + 1,
+        EmployeeId: data.emp_unique_id,
+        EmployeeName: data.emp_name,
+        Check_In_Date: data.check_in_date,
+        Check_In_Time: data.check_in_time,
+        Check_Out_Date: data.check_out_date || "--------",
+        Check_Out_Time: data.check_out_time || "--------",
+        Status: data.check_status,
+      });
+    });
+    setRowTableData2(tempArr);
+  }, [TimeSheetGetAll]);
 
   return (
     <div
       className="Timesheet-div"
-      style={{ background: "black", height: "100%" }}
+      style={{
+        minHeight: "100vh",
+        maxHeight: "100%",
+        // height:"100%",
+        width: "100%",
+        // background: "blue",
+      }}
     >
-      <Grid container md={12} sx={{ background: "white", height: "100%" }}>
+      <Grid
+        container
+        md={12}
+        sx={{
+          width: "100%",
+        }}
+      >
         <Grid
           item
           md={12}
           sx={{
-            height: "10%",
             display: "flex",
             justifyContent: "space-between",
             backgroundColor: "var(--primary-color)",
           }}
         >
-          <div className="pages-h1">
+          <div className="pages-h1 d-flex align-items-center">
             <h1>Timesheet</h1>
           </div>
           <div className="d-flex align-items-center ">
@@ -170,11 +236,32 @@ const Timesheet = () => {
             </div>
           </div>
         </Grid>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+            // background: "white",
+          }}
+        >
+          <div className="heading-line-div">
+            <div className="head-line-div">
+              <h4> Employee Entry </h4>
+              <div className="heading-line"></div>
+            </div>
+            {/* <div className="head-line-div">
+              <h4> Employee Entry </h4>
+              <div className="heading-line"></div>
+            </div> */}
+          </div>
+        </Grid>
         {/* input field */}
-        <Grid item md={12} sx={{ height: "35%" }}>
+        <Grid item md={12} sx={{ height: "170px", marginTop: "20px" }}>
           <Formik
             initialValues={{
-              employee_id: "",
+              emp_id: "",
               employee_name: "",
             }}
             style={{ height: "100%" }}
@@ -184,30 +271,15 @@ const Timesheet = () => {
               <Form style={{ height: "100%" }} className="fomik-form">
                 <Container
                   style={{
-                    width: "100%",
+                    width: "98%",
                     backgroundColor: "white",
-                    padding: "0px 40px 10px",
+                    padding: "10px 40px 10px",
                     height: "100%",
+                    borderRadius: "15px",
                   }}
                 >
                   {/* heading Row */}
                   <Grid container sx={{ height: "100%" }}>
-                    <Grid
-                      item
-                      xs={12}
-                      sx={{
-                        height: "30%",
-                        background: "white",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div>
-                        <h4> Employee Entry </h4>
-                        <div className="heading-line"></div>
-                      </div>
-                    </Grid>
-
                     {/* First Row */}
                     <Grid
                       item
@@ -216,20 +288,25 @@ const Timesheet = () => {
                         display: "flex",
                         justifyContent: "start",
                         marginTop: "5px",
-                        height: "70%",
                       }}
                     >
                       <CustomDropdownMui
                         label="Employee Id"
-                        name="employee_id"
+                        name="emp_id"
                         custPlaceholder="Select Employee Id"
                         setFieldValue={setFieldValue}
-                        options={[
-                          { value: "1", label: "pravin" },
-                          { value: "2", label: "pravin" },
-                        ]}
+                        options={timeSheetDrop}
                         selectEmployeeIdfn={selectEmployeeIdfn}
                       />
+                      {/* <CustomSearchInput
+                        predefinedSuggestions={[
+                          { value: 1, label: "Apple" },
+                          { value: 2, label: "Banana" },
+                          { value: 3, label: "Orange" },
+                          { value: 4, label: "Pineapple" },
+                          { value: 5, label: "Grapes" },
+                        ]}
+                      /> */}
                     </Grid>
                     <Grid
                       item
@@ -238,7 +315,6 @@ const Timesheet = () => {
                         display: "flex",
                         justifyContent: "center",
                         marginTop: "5px",
-                        height: "70%",
                       }}
                     >
                       {/* <CustomInput
@@ -248,8 +324,8 @@ const Timesheet = () => {
                         custPlaceholder=" "
                       /> */}
                       <CustomInputDisable
-                      label="Employee Name"
-                      name={'pravin'}
+                        label="Employee Name"
+                        name={employeeName}
                       />
                     </Grid>
                     <Grid
@@ -259,7 +335,6 @@ const Timesheet = () => {
                         display: "flex",
                         justifyContent: "end",
                         marginTop: "20px",
-                        height: "70%",
                       }}
                     >
                       <ButtonGroup>
@@ -312,24 +387,25 @@ const Timesheet = () => {
           </Formik>
         </Grid>
 
-        <Grid item md={12} sx={{ height: "55%" }}>
+        <Grid item md={12} sx={{}}>
           <Container
             style={{
-              width: "95%",
+              width: "98%",
               padding: "0px",
               marginTop: "15px",
-              maxWidth: "95%",
+              marginBottom: "15px",
               background: "white",
               borderRadius: "10px",
-              boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+              // boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
             }}
           >
             <Grid container>
               <Grid item xs={12}>
                 <CusTable
                   TableHeading={MASTER.CreateEmployeeTableHeaders}
-                  Tabledata={MASTER.CreateEmployeeTableValues}
+                  Tabledata={rowTableData2}
                   TableTittle="Overview"
+                  showEmpDetails={false}
                   // handleDeleteIdChange={handleDeleteIdChange}
                 />
               </Grid>

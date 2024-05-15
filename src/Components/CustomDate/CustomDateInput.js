@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Field, ErrorMessage } from "formik";
 import { CiCalendar } from "react-icons/ci";
+import { FcCalendar } from "react-icons/fc";
 import "./CustomDateInput.css";
 import "../ComponentsCss/componet.css";
 
@@ -30,8 +31,9 @@ const CustomDateInput = ({ label, name, ...rest }) => {
             />
           )}
         </Field>
-        <CiCalendar
+        <FcCalendar
           style={{
+            color: "blue",
             position: "absolute",
             fontSize:"21px",
             // right: '10px',

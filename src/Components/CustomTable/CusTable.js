@@ -16,7 +16,7 @@ import { GrFormPrevious } from "react-icons/gr";
 // import actions from "../../ReduxStore/actions/index";
 // import { useDispatch, useSelector } from "react-redux";
 
-const CusTable = ({ TableHeading, Tabledata, TableTittle }) => {
+const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToatalHours}) => {
   // console.log(MASTER.TableVaues.map((datas)=>{datas.Sno})
   // console.log(TableHeading, "tableHeading...............");
   // console.log(Tabledata, "Tabledatsss...............");
@@ -95,7 +95,7 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle }) => {
               className="Table_heading"
               style={{
                 fontSize: "19px",
-                color: "#6F4E37",
+                color: "var(--primary-color)",
                 marginBottom: "20px",
               }}
             >
@@ -124,7 +124,25 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle }) => {
 
           </Grid> */}
         </Grid>
-
+        {showEmpDetails &&
+        <Grid xs={12} style={{ display: "flex",color:"var(--primary-color)" }} >
+          <Grid xs={6} style={{ display: "flex" }}>
+            <Grid xs={2.5}>
+              <p>Employee Id</p>
+            </Grid>
+            <Grid xs={3.5}>
+              <p>001</p>
+            </Grid>
+          </Grid>
+          <Grid xs={6} style={{ display: "flex" }}>
+            <Grid xs={3}>
+              <p>Employee Name:</p>
+            </Grid>
+            <Grid xs={3}>
+              <p>Biddu</p>
+            </Grid>
+          </Grid>
+        </Grid>}
         <Grid item xs={12}>
           <Box mt={2} mb={2} sx={{ marginBottom: "0", marginTop: "0" ,height:"198px"}}>
             {" "}
@@ -143,7 +161,7 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle }) => {
                       className="thead_data"
                       style={{
                         color: "white",
-                        backgroundColor: "#6F4E37",
+                        backgroundColor: "var(--primary-color)",
                         fontWeight: 700,
                         fontSize: "13.8px",
                         borderBottom: "2px solid rgba(88, 68, 53, 0.23)",
@@ -209,6 +227,20 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle }) => {
           </Box>
         </Grid>
       </Grid>
+      {showToatalHours && (
+        <Grid
+          xs={12}
+          style={{ display: "flex" ,justifyContent:"end", marginLeft:"10%",color: "var(--primary-color)" }}
+        >
+          
+          <Grid xs={4}>
+            <p style={{fontWeight:"700", fontSize:"23px"}}>Total Hours</p>
+          </Grid>
+          <Grid xs={4}>
+            <p  style={{fontWeight:"700", fontSize:"23px"}}>62:00</p>
+          </Grid>
+        </Grid>
+      )}
       <Grid item xs={12}>
         <Box style={{ marginTop: "10px" }}>
           <nav
@@ -234,7 +266,7 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle }) => {
             </p>
             <ul className="pagination"  >
               <li className="page-item">
-                <a
+                <button
                   className="page-link"
                   href="#"
                   aria-label="Previous"
@@ -242,7 +274,7 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle }) => {
                   style={{marginTop:"-9px"}}
                 >
                   <GrFormPrevious/>
-                </a>
+                </button>
               </li>
               {numbers.map((n, i) => (
                 <li
@@ -254,12 +286,12 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle }) => {
 
                   key={i}
                 >
-                  <a
+                  <button
                     className="page-link"
                     href="#"
                     onClick={() => changeCPage(n)}
                     style={{
-                      backgroundColor: currentPage === n ? "#6F4E37" : "",
+                      backgroundColor: currentPage === n ? "var(--primary-color)" : "",
                       color: currentPage === n ? "white" : "",
                       padding:"2px  10px",
                       borderRadius:"12px",
@@ -268,11 +300,11 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle }) => {
                     }}
                   >
                     {n}
-                  </a>
+                  </button>
                 </li>
               ))}
               <li class="page-item">
-                <a
+                <button
                   className="page-link"
                   href="#"
                   aria-label="Previous"
@@ -280,7 +312,7 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle }) => {
                   style={{marginTop:"-9px"}}
                 >
                   <GrFormNext style={{ fontSize: "17px"}} />
-                </a>
+                </button>
               </li>
             </ul>
           </nav>
