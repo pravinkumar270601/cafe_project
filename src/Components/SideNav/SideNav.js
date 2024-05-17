@@ -17,7 +17,6 @@ import Toolbar from "@mui/material/Toolbar";
 import { BsFillFileEarmarkTextFill } from "react-icons/bs";
 import { RiVipCrown2Fill } from "react-icons/ri";
 import { BsFileBarGraphFill } from "react-icons/bs";
-import Timesheet from "../../Pages/Timesheet/Timesheet";
 import { BsFileEarmarkBarGraph } from "react-icons/bs";
 import { BsFillFileEarmarkBarGraphFill } from "react-icons/bs";
 import cafe_logo from "../../Assets/Image_1.jpg";
@@ -25,13 +24,17 @@ import Record from "../../Pages/Record/Record";
 import { BiSolidFile } from "react-icons/bi";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import Payroll from "../../Pages/Payroll/Payroll";
+import Timesheets from "../../Pages/Timesheet/Timesheets";
+import Master from "../../Pages/Master/Master";
+
+
 
 const drawerWidth = 240;
 
 function SideNav(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [currentComponent, setCurrentComponent] = React.useState(<Timesheet />);
+  const [currentComponent, setCurrentComponent] = React.useState(<Timesheets />);
   const [isClosing, setIsClosing] = React.useState(false);
   const [navBoeder, setNavBorde] = React.useState("");
 
@@ -41,7 +44,7 @@ function SideNav(props) {
   };
 
   React.useEffect(() => {
-    setNavBorde("Timesheet");
+    setNavBorde("Timesheets");
   }, []);
 
   const handleDrawerTransitionEnd = () => {
@@ -74,56 +77,84 @@ function SideNav(props) {
 
       {/* <Divider /> */}
       <List>
-        
-
-        <ListItem
-          disablePadding
-          onClick={() => handleNavigation(<Timesheet />)}
-        >
+      <ListItem disablePadding onClick={() => handleNavigation(<Master />)}>
           <ListItemButton
-            onClick={() => setNavBorde("Timesheet")}
-
+            onClick={() => setNavBorde("Master")}
             sx={{
               backgroundColor:
-                navBoeder === "Timesheet" ? "var(--primary-color)" : "none",
+                navBoeder === "Master" ? "var(--primary-color)" : "none",
+
+              marginTop: "20px",
               marginLeft: "10px",
               marginRight: "10px",
               borderRadius: "8px",
               "&:hover": {
                 backgroundColor:
-                  navBoeder === "Timesheet" ? "var(--primary-color)" : "white", // Same as default background color
+                  navBoeder === "Master" ? "var(--primary-color)" : "white", // Same as default background color
+                // Add any other styles here that you want to disable on hover
+              },
+            }}
+          >
+            <ListItemIcon>
+              <RiVipCrown2Fill
+                style={{
+                  fontSize: "28px",
+                  color:
+                    navBoeder === "Master" ? "white" : "var(--primary-color)",
+                }}
+              />
+            </ListItemIcon>
+            <ListItemText
+              primary="Master"
+              primaryTypographyProps={{
+                sx: {
+                  color:
+                    navBoeder === "Master" ? "white" : "var(--primary-color)",
+                },
+              }}
+            />
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem
+          disablePadding
+          onClick={() => handleNavigation(<Timesheets/>)}
+        >
+          <ListItemButton
+            onClick={() => setNavBorde("Timesheets")}
+            sx={{
+              backgroundColor:
+                navBoeder === "Timesheets" ? "var(--primary-color)" : "none",
+                marginTop: "20px",
+              marginLeft: "10px",
+              marginRight: "10px",
+              borderRadius: "8px",
+              "&:hover": {
+                backgroundColor:
+                  navBoeder === "Timesheets" ? "var(--primary-color)" : "white", // Same as default background color
                 // Add any other styles here that you want to disable on hover
               },
             }}
           >
             <ListItemIcon
-            // sx={{
-            //   color:
-            //     navBoeder === "Timesheet" ? "var(--primary-color)" : "none",
-            // }}
-            >
-              {/* <BsFileEarmarkBarGraph style={{ fontSize: "25px",color:"white",backgroundColor:"blue" }}  /> */}
+           >
               <BsFillFileEarmarkBarGraphFill
                 style={{
                   fontSize: "25px",
                   color:
-                    navBoeder === "Timesheet"
+                    navBoeder === "Timesheets"
                       ? "white"
                       : "var(--primary-color)",
                 }}
               />
             </ListItemIcon>
             <ListItemText
-              primary="Timesheet"
+              primary="Timesheets"
               primaryTypographyProps={{
-                // sx: {
-                //   color:
-                //     navBoeder === "Timesheet" ? "white" : "rgb(0, 0, 0, .3) ",
-                //   fontWeight: "700",
-                // },
+               
                 sx: {
                   color:
-                    navBoeder === "Timesheet"
+                    navBoeder === "Timesheets"
                       ? "white"
                       : "var(--primary-color)",
                 },
@@ -170,7 +201,7 @@ function SideNav(props) {
             />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding onClick={() => handleNavigation(<Payroll/>)}>
+        <ListItem disablePadding onClick={() => handleNavigation(<Payroll />)}>
           <ListItemButton
             onClick={() => setNavBorde("Payroll")}
             sx={{

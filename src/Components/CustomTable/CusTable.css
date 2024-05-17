@@ -99,15 +99,15 @@ th {
 }
 
 .Table_search_input {
-  width: 150px;
+  width: 229px;
   box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 9px;
+  border: 2px solid #93989d;
+  border-radius: 19px;
   padding: 5px;
   font-size: 14px;
-  background-color: #f4f7fe;
+  background-color: white;
 
-  border: none;
+  /* border: none; */
 }
 
 .Table_search_input::placeholder {

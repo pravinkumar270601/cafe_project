@@ -1,28 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid } from "@mui/material";
 // import "../Css/timesheet.css";
-import userIcon from "../../../Assets/user.png";
+// import userIcon from "../../../Assets/user.png";
 import CustomInput from "../../../Components/CustomInput/CustomInput";
 import CustomDropdownMui from "../../../Components/CustomDropDown/CustomDropdown";
-import CustomDateInput from "../../../Components/CustomDate/CustomDateInput";
+// import CustomDateInput from "../../../Components/CustomDate/CustomDateInput";
 // import actions from "../../ReduxStore/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from "formik";
-import { FaBell } from "react-icons/fa";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import { RiLogoutBoxRLine } from "react-icons/ri";
-import { RiLogoutBoxLine } from "react-icons/ri";
+// import { FaBell } from "react-icons/fa";
+// import Button from "@mui/material/Button";
+// import ButtonGroup from "@mui/material/ButtonGroup";
+// import { RiLogoutBoxRLine } from "react-icons/ri";
+// import { RiLogoutBoxLine } from "react-icons/ri";
 import CusTable from "../../../Components/CustomTable/CusTable";
 import * as MASTER from "../../../Components/CustomTable/Tableentries";
-import CustomSearchInput from "../../../Components/CustomSearchInput/CustomSearchInput";
 // import CustomInputDisable from "../../Components/CustomInputDisable/CustomInputDisable";
 // import "./Timesheet";
+import CustomInputDisable from "../../../Components/CustomInputDisable/CustomInputDisable";
+import CustomDateInput from "../../../Components/CustomDate/CustomDateInput";
 
-
-const ListOfLog = () => {
+const EntryManagement = () => {
   return (
-    <div style={{ height:"100%", width: "100%" }}>
+    <div style={{ height: "100%", width: "100%" }}>
       <Grid
         container
         md={12}
@@ -31,7 +31,7 @@ const ListOfLog = () => {
         }}
       >
         {/* input field */}
-        <Grid item md={12} sx={{ height: "170px", marginTop: "20px" }}>
+        <Grid item md={12} sx={{ marginTop: "20px" }}>
           <Formik
             initialValues={{
               emp_id: "",
@@ -61,25 +61,20 @@ const ListOfLog = () => {
                         display: "flex",
                         justifyContent: "start",
                         marginTop: "5px",
-                        height: "30%",
                       }}
                     >
-                      <CustomSearchInput
-                        label="Employee Id"
-                        name="emp_id"
-                        custPlaceholder="Search Employee Id"
-                        setFieldValue={setFieldValue}
-                        // selectEmployeeIdfn={selectEmployeeIdfn}
+                      <CustomDropdownMui
+                        label="Branch"
+                        name="Branch"
+                        custPlaceholder="Select Branch"
+                        //   setFieldValue={setFieldValue}
                         options={[
                           { value: "1", label: "Male" },
                           { value: "2", label: "Female" },
                           { value: "3", label: "Others" },
                         ]}
-                        // setEmployeeName={setEmployeeName}
-                        // setButton1Disabled={setButton1Disabled}
-                        // setButton2Disabled={setButton2Disabled}
+                        //   selectEmployeeIdfn={selectEmployeeIdfn}
                       />
-                     
                     </Grid>
                     <Grid
                       item
@@ -88,39 +83,80 @@ const ListOfLog = () => {
                         display: "flex",
                         justifyContent: "center",
                         marginTop: "5px",
-                        height: "30%",
+                      }}
+                    >
+                      <CustomDropdownMui
+                        label="Employee Name"
+                        name="Employee_Name"
+                        custPlaceholder="Select Employee Name"
+                        //   setFieldValue={setFieldValue}
+                        options={[
+                          { value: "1", label: "Male" },
+                          { value: "2", label: "Female" },
+                          { value: "3", label: "Others" },
+                        ]}
+                        //   selectEmployeeIdfn={selectEmployeeIdfn}
+                      />
+                    </Grid>
+
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "end",
+                        marginTop: "5px",
+                      }}
+                    >
+                      <CustomInputDisable label="Employee Id" name={" "} />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "start",
+                        alignItems: "center",
+                        marginTop: "5px",
+                      }}
+                    >
+                      <CustomDateInput label="Date" name="date" />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginTop: "5px",
                       }}
                     >
                       <CustomInput
-                        label="Employee Name"
-                        name="employee_name"
-                        inputType={"text"}
+                        label="Check-In Time"
+                        name="no_of_staffs"
+                        inputType={"number"}
+
                         custPlaceholder=" "
+                        
                       />
                     </Grid>
                     <Grid
                       item
-                      xs={2}
+                      xs={4}
                       sx={{
                         display: "flex",
                         justifyContent: "end",
+                        alignItems: "center",
                         marginTop: "5px",
-                        height: "30%",
                       }}
                     >
-                      <CustomDateInput label="From Date" name="date" />
-                    </Grid>
-                    <Grid
-                      item
-                      xs={2}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "end",
-                        marginTop: "5px",
-                        height: "30%",
-                      }}
-                    >
-                      <CustomDateInput label="To Date" name="date1" />
+                      <CustomInput
+                        label="Check-Out Time"
+                        name="no_of_staffs"
+                        inputType={"number"}
+                        custPlaceholder=" "
+                      />
                     </Grid>
                     <Grid item xs={4}></Grid>
                     <Grid item xs={4}></Grid>
@@ -131,6 +167,7 @@ const ListOfLog = () => {
                         display: "flex",
                         justifyContent: "end",
                         alignItems: "center",
+                        marginTop: "15px",
                       }}
                     >
                       <button
@@ -166,16 +203,18 @@ const ListOfLog = () => {
               marginBottom: "15px",
               background: "white",
               borderRadius: "10px",
-            //   boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+              //   boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
             }}
           >
             <Grid container>
               <Grid item xs={12}>
                 <CusTable
-                  TableHeading={MASTER.ListofLogsTableHeaders}
-                  Tabledata={MASTER.ListOfLogTableValues}
+                  TableHeading={MASTER.EntryManagementTableHeaders}
+                  Tabledata={MASTER.EntryManagementTableValues}
                   TableTittle="Overview"
-                  showEmpDetails={true}
+                  showEmpDetails={false}
+                  showAction={true}
+
                   // handleDeleteIdChange={handleDeleteIdChange}
                 />
               </Grid>
@@ -190,4 +229,4 @@ const ListOfLog = () => {
   );
 };
 
-export default ListOfLog;
+export default EntryManagement;

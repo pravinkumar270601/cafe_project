@@ -6,9 +6,9 @@ import Box from "@mui/material/Box";
 import { Grid } from "@mui/material";
 import userIcon from "../../Assets/user.png";
 import { FaBell } from "react-icons/fa";
-import ListOfLog from "../RecordTabs/ListOfLog/ListOfLog";
-import HoursRecord from "../RecordTabs/HoursRecord/HoursRecord";
 import "../Css/record.css"
+import BranchMaster from "../MasterTabs/BranchMaster/BranchMaster";
+import EmployeeMaster from "../MasterTabs/EmployeeMaster/EmployeeMaster";
 
 // import "../Pages/Css/Masters.css";
 
@@ -42,7 +42,7 @@ function a11yProps(name) {
   };
 }
 
-const Record = () => {
+const Master = () => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -70,7 +70,7 @@ const Record = () => {
               }}
             >
               <div className="pages-h1 d-flex align-items-center">
-                <h1>Records</h1>
+                <h1>Master</h1>
               </div>
               <div className="d-flex align-items-center ">
                 <div>
@@ -95,8 +95,8 @@ const Record = () => {
             }}
           >
             <Tab
-              label="List of Log"
-              {...a11yProps("List_of_Log")}
+              label="Branch Master"
+              {...a11yProps("Branch_Master")}
               sx={{
                 marginLeft: "30px",
                 marginRight: "150px",
@@ -104,8 +104,8 @@ const Record = () => {
               }}
             />
             <Tab
-              label="Hours Record"
-              {...a11yProps("Hours_record")}
+              label="Employee Master"
+              {...a11yProps("Employee_Master")}
               sx={{ marginRight: "150px", textTransform: "none" }}
             />
             {/* <Tab
@@ -126,12 +126,12 @@ const Record = () => {
             /> */}
           </Tabs>
         </Box>
-        <Box sx={{ width: " 100%", height: "82%" }}>
+        <Box sx={{ width: " 100%", height: "82%", marginTop: "1%" }}>
           <CustomTabPanel value={value} index={0}>
-            <ListOfLog />
+            <BranchMaster />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            <HoursRecord />
+            <EmployeeMaster />
           </CustomTabPanel>
           {/* <CustomTabPanel value={value} index={2}>
             <CategoryTab />
@@ -148,4 +148,4 @@ const Record = () => {
   );
 };
 
-export default Record;
+export default Master;

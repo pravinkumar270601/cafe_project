@@ -6,8 +6,8 @@
   font-size: 14px;
   outline: none; /* Remove outline when focused */
   border: 1px solid #ced4da;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .custom-country-field{
     height: 37px;
@@ -16,8 +16,8 @@
     font-size: 14px;
     outline: none; /* Remove outline when focused */
     border: 1px solid #ced4da;
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 
 }
 

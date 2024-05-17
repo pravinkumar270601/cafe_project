@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import { Grid } from "@mui/material";
 import userIcon from "../../Assets/user.png";
 import { FaBell } from "react-icons/fa";
-import Timesheet from "../Timesheet/Timesheet";
 import ListOfLog from "../RecordTabs/ListOfLog/ListOfLog";
 import HoursRecord from "../RecordTabs/HoursRecord/HoursRecord";
 import "../Css/record.css"

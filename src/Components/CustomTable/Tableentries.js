@@ -7,14 +7,10 @@ export const CreateEmployeeTableHeaders = [
   "Check-Out Date",
   "Check-Out Time",
   "Status",
-  
 ];
-
 
 export const ListofLogsTableHeaders = [
   "S.No",
- 
-  
   "Check-In Date",
   "Check-In Time",
   "Check-Out Date",
@@ -30,6 +26,177 @@ export const HoursRecordTableHeaders = [
   "Working Hours",
 ];
 
+export const BranchMasterTableHeaders = [
+  "S.No",
+
+  "Branch",
+
+  "Branch Location",
+  "Street/Building",
+  "City/State/Pincode",
+  "Country",
+  "Action",
+];
+export const EmployeeMasterTableHeaders = [
+  "S.No",
+  "Employee Name",
+  "Employee Id",
+  "Email",
+  "Branch",
+  "Action",
+];
+
+export const EntryManagementTableHeaders = [
+  "S.No",
+  "Branch",
+  "Employee Name",
+  "Employee Id",
+  "Check-In Date",
+  "Check-In Time",
+  "Check-Out Date",
+  "Check-Out Time",
+  "Status",
+  "Action",
+];
+
+export const StaffDetailsTableHeaders = [
+  "S.No",
+  "Employee Name",
+  "Employee Id",
+  "Wages",
+];
+
+export const EmployeeMasterTableValues = [
+  {
+    Sno: "1",
+    EmployeeName: "Biddu",
+    EmployeeId: "001",
+    E_Mail: "teaboy123@gmail.com",
+    Branch: "6th Main Rd,V Block,Anna Nagar",
+  },
+  {
+    Sno: "2",
+    EmployeeName: "Pravin M",
+    EmployeeId: "002",
+    E_Mail: "teaboy123@gmail.com",
+    Branch: "6th Main Rd,V Block,Anna Nagar",
+  },
+  {
+    Sno: "3",
+    EmployeeName: "Pravin R",
+
+    EmployeeId: "003",
+    E_Mail: "teaboy123@gmail.com",
+    Branch: "6th Main Rd,V Block,Anna Nagar",
+  },
+  {
+    Sno: "4",
+    EmployeeName: "Valla",
+
+    EmployeeId: "004",
+    E_Mail: "teaboy123@gmail.com",
+    Branch: "6th Main Rd,V Block,Anna Nagar",
+  },
+  {
+    Sno: "5",
+    EmployeeName: "Arun",
+
+    EmployeeId: "006",
+    E_Mail: "teaboy123@gmail.com",
+    Branch: "6th Main Rd,V Block,Anna Nagar",
+  },
+  {
+    Sno: "6",
+    EmployeeName: "Dinesh",
+
+    EmployeeId: "006",
+    E_Mail: "teaboy123@gmail.com",
+    Branch: "6th Main Rd,V Block,Anna Nagar",
+  },
+  {
+    Sno: "7",
+    EmployeeName: "Binu",
+
+    EmployeeId: "007",
+    E_Mail: "teaboy123@gmail.com",
+    Branch: "6th Main Rd,V Block,Anna Nagar",
+  },
+  {
+    Sno: "8",
+    EmployeeName: "Raj",
+
+    EmployeeId: "008",
+    E_Mail: "teaboy123@gmail.com",
+    Branch: "6th Main Rd,V Block,Anna Nagar",
+  },
+];
+
+export const BranchMasterTableValues = [
+  {
+    Sno: "1",
+    Branch: "Mohan&Co",
+    Branch_Location: "Anna Nagar",
+    Street_Building: "6th Main Rd,V Block,Anna Nagar",
+    City_State_Pincode: "Chennai,Tamil Nadu 600014",
+    Country: "India",
+  },
+  {
+    Sno: "2",
+    Branch: "Empty Cafe",
+    Branch_Location: "Anna Nagar",
+    Street_Building: "6th Main Rd,V Block,Anna Nagar",
+    City_State_Pincode: "Chennai,Tamil Nadu 600014",
+    Country: "India",
+  },
+  {
+    Sno: "3",
+    Branch: "Tea",
+    Branch_Location: "Anna Nagar",
+    Street_Building: "6th Main Rd,V Block,Anna Nagar",
+    City_State_Pincode: "Chennai,Tamil Nadu 600014",
+    Country: "India",
+  },
+  {
+    Sno: "4",
+    Branch: "Cafe",
+    Branch_Location: "Anna Nagar",
+    Street_Building: "6th Main Rd,V Block,Anna Nagar",
+    City_State_Pincode: "Chennai,Tamil Nadu 600014",
+    Country: "India",
+  },
+  {
+    Sno: "5",
+    Branch: "Tea Boy",
+    Branch_Location: "Anna Nagar",
+    Street_Building: "6th Main Rd,V Block,Anna Nagar",
+    City_State_Pincode: "Chennai,Tamil Nadu 600014",
+    Country: "India",
+  },
+  {
+    Sno: "6",
+    Branch: "Boys Cafe",
+    Branch_Location: "Anna Nagar",
+    Street_Building: "6th Main Rd,V Block,Anna Nagar",
+    City_State_Pincode: "Chennai,Tamil Nadu 600014",
+    Country: "India",
+  },
+  {
+    Sno: "7",
+    Branch: "The Boys",
+    Branch_Location: "Anna Nagar",
+    Street_Building: "6th Main Rd,V Block,Anna Nagar",
+    City_State_Pincode: "Chennai,Tamil Nadu 600014",
+    Country: "India",
+  },
+  {
+    Sno: "8",
+    Branch: "Mohan&Co",
+    Branch_Location: "Anna Nagar",
+    Street_Building: "6th Main Rd,V Block,Anna Nagar",
+    City_State_Pincode: "Chennai,Tamil Nadu 600014",
+    Country: "India",
+  },
+];
 export const HoursRecordTableValues = [
   {
     Sno: "1",
@@ -82,7 +249,7 @@ export const ListOfLogTableValues = [
     Check_In_Date: "19 April 2023",
     Check_In_Time: "07:00",
     Check_Out_Date: "19 April 2023",
-     Check_Out_Time: "11:00",
+    Check_Out_Time: "11:00",
     Working_Hours: "12:00",
   },
   {
@@ -223,5 +390,45 @@ export const CreateEmployeeTableValues = [
     Check_Out_Date: "19 April 2023",
     Check_Out_Time: "11:00",
     Status: "Out",
+  },
+];
+
+export const EntryManagementTableValues = [
+  {
+    Sno: "1",
+    Branch: "chennai",
+    EmployeeName: "Biddu",
+    EmployeeId: "001",
+    Check_In_Date: "19 April 2023",
+    Check_In_Time: "07:00",
+    Check_Out_Date: "19 April 2023",
+    Check_Out_Time: "11:00",
+    Status: "Out",
+  },
+  {
+    Sno: "2",
+    Branch: "chennai",
+    EmployeeName: "parvin",
+    EmployeeId: "001",
+    Check_In_Date: "19 April 2023",
+    Check_In_Time: "07:00",
+    Check_Out_Date: "19 April 2023",
+    Check_Out_Time: "11:00",
+    Status: "Out",
+  },
+];
+
+export const StaffDetailsTableValues = [
+  {
+    "S.No": 1,
+    "Employee Name": "pravin",
+    "Employee Id": "01",
+    Wages: "$100",
+  },
+  {
+    "S.No": 2,
+    "Employee Name": "pravin",
+    "Employee Id": "01",
+    Wages: "$100",
   },
 ];

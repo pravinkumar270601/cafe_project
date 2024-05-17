@@ -13,16 +13,30 @@ import { Height } from "@mui/icons-material";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { GrFormNext } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
+import { LuEye } from "react-icons/lu";
 // import actions from "../../ReduxStore/actions/index";
+import { RiEyeLine } from "react-icons/ri";
+import { RiEdit2Line } from "react-icons/ri";
+// import ModelOpen from "../ModelOpen/ModelOpen";
 // import { useDispatch, useSelector } from "react-redux";
 
-const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToatalHours,showActions}) => {
+const CusTable = ({
+  TableHeading,
+  Tabledata,
+  TableTittle,
+  showEmpDetails,
+  showToatalHours,
+  showAction,
+  showSearch,
+  onViewClick
+}) => {
   // console.log(MASTER.TableVaues.map((datas)=>{datas.Sno})
   // console.log(TableHeading, "tableHeading...............");
   // console.log(Tabledata, "Tabledatsss...............");
   const recordperpage = 5;
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [open, setOpen] = React.useState(false);
   function prepage() {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
@@ -75,6 +89,9 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
   //   (state)=>state?.MovieDelete
   // );
   // console.log(MovieDelete,'delete api')
+  // const HandleClick=()=>{
+  //   ModelOpen.open()
+  // }
 
   return (
     <Grid container xs={12} sx={{ width: "100%" }}>
@@ -90,6 +107,58 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
         }}
       >
         <Grid container className="table_search_grid">
+          {!showSearch && (
+            <Grid item xs={12}>
+              <h3
+                className="Table_heading"
+                style={{
+                  fontSize: "19px",
+                  color: "var(--primary-color)",
+                  marginBottom: "20px",
+                }}
+              >
+                {TableTittle}
+              </h3>
+            </Grid>
+          )}
+          {showSearch && (
+            <Grid item xs={4}>
+              <h3
+                className="Table_heading"
+                style={{
+                  fontSize: "19px",
+                  color: "var(--primary-color)",
+                  marginBottom: "20px",
+                }}
+              >
+                {TableTittle}
+              </h3>
+            </Grid>
+          )}
+          {showSearch && <Grid item xs={6}></Grid>}
+          {showSearch && (
+            <Grid
+              item
+              xs={2}
+              mb={1}
+              sx={{
+                display: "flex",
+                justifyContent: "end",
+              }}
+            >
+              <div className="search-container">
+                <RiSearchLine className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="Table_search_input"
+                  onChange={handleSearchChange}
+                />
+              </div>
+            </Grid>
+          )}
+        </Grid>
+        {/* <Grid container  className="table_search_grid">
           <Grid item xs={12}>
             <h3
               className="Table_heading"
@@ -97,15 +166,20 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
                 fontSize: "19px",
                 color: "var(--primary-color)",
                 marginBottom: "20px",
+                display: "flex",
+              justifyContent: "start",
               }}
             >
               {TableTittle}
             </h3>
           </Grid>
-          {/* <Grid item xs={6}></Grid>
+       
+          
+          {showSearch &&
+          <Grid xs={6}>
           <Grid
             item
-            xs={2}
+            xs={6}
             mb={1}
             sx={{
               display: "flex",
@@ -122,29 +196,38 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
               />
             </div>
 
-          </Grid> */}
-        </Grid>
-        {showEmpDetails &&
-        <Grid xs={12} style={{ display: "flex",color:"var(--primary-color)" }} >
-          <Grid xs={6} style={{ display: "flex" }}>
-            <Grid xs={2.5}>
-              <p>Employee Id</p>
+          </Grid>
+          </Grid>}
+        </Grid> */}
+        {showEmpDetails && (
+          <Grid
+            xs={12}
+            style={{ display: "flex", color: "var(--primary-color)" }}
+          >
+            <Grid xs={6} style={{ display: "flex" }}>
+              <Grid xs={2.5}>
+                <p>Employee Id</p>
+              </Grid>
+              <Grid xs={3.5}>
+                <p>001</p>
+              </Grid>
             </Grid>
-            <Grid xs={3.5}>
-              <p>001</p>
+            <Grid xs={6} style={{ display: "flex" }}>
+              <Grid xs={3}>
+                <p>Employee Name:</p>
+              </Grid>
+              <Grid xs={3}>
+                <p>Biddu</p>
+              </Grid>
             </Grid>
           </Grid>
-          <Grid xs={6} style={{ display: "flex" }}>
-            <Grid xs={3}>
-              <p>Employee Name:</p>
-            </Grid>
-            <Grid xs={3}>
-              <p>Biddu</p>
-            </Grid>
-          </Grid>
-        </Grid>}
+        )}
         <Grid item xs={12}>
-          <Box mt={2} mb={2} sx={{ marginBottom: "0", marginTop: "0" ,height:"198px"}}>
+          <Box
+            mt={2}
+            mb={2}
+            sx={{ marginBottom: "0", marginTop: "0", height: "198px" }}
+          >
             {" "}
             {/* Margin top and bottom */}
             <table
@@ -184,43 +267,64 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
                             style={{
                               fontWeight: "600",
                               borderBottom: "2px solid rgba(88, 68, 53, 0.23)",
-                             color:"#262323d9",
-                             fontSize:"13px"
+                              color: "#262323d9",
+                              fontSize: "13px",
                             }}
                           >
                             {datas[key]}
                           </td>
                         )
                     )}
-                    {showActions &&
-                    <td style={{ borderBottom: "2px solid rgba(88, 68, 53, 0.23)"}}>
-                      <IoPencil
-                      // onClick={()=>setmyDefaultFieldValues(datas.id)}
+                    {showAction && (
+                      <td
                         style={{
-                          marginRight: "10px",
-                          color: "#4318FF",
-                          cursor: "pointer",
-                          backgroundColor: "#F4F7FE",
-                          padding: "3px",
-                          fontSize: "20px",
-                          borderRadius: "7px",
-                          border: "none",
+                          borderBottom: "2px solid rgba(88, 68, 53, 0.23)",
                         }}
-                      />
-                      
-                      <IoTrash
-                        // onClick={()=>{handleDelete(datas.id)}}
-                        style={{
-                          color: "#4318FF",
-                          cursor: "pointer",
-                          backgroundColor: "#F4F7FE",
-                          padding: "3px",
-                          fontSize: "20px",
-                          borderRadius: "7px",
-                        }}
-                      />
-                      
-                    </td>}
+                      >
+                        <RiEyeLine
+                        // onClick={() => onViewClick(datas)}
+                          style={{
+                            marginRight: "7px",
+                            color: "var(--primary-color)",
+                            cursor: "pointer",
+                            // backgroundColor: "#F4F7FE",
+                            // padding: "3px",
+                            fontSize: "20px",
+                            // borderRadius: "7px",
+                            border: "none",
+                            // borderBottom: "2px solid rgba(88, 68, 53, 0.23)",
+                          }}
+                        />
+
+                        <RiEdit2Line
+                          // onClick={()=>setmyDefaultFieldValues(datas.id)}
+                          style={{
+                            marginRight: "7px",
+                            color: "green",
+                            cursor: "pointer",
+                            // backgroundColor: "#F4F7FE",
+                            // padding: "3px",
+                            fontSize: "20px",
+                            // borderRadius: "7px",
+                            border: "none",
+                            // borderBottom: "2px solid rgba(88, 68, 53, 0.23)",
+                          }}
+                        />
+
+                        <IoTrash
+                          // onClick={()=>{handleDelete(datas.id)}}
+                          style={{
+                            color: "red",
+                            cursor: "pointer",
+                            // backgroundColor: "#F4F7FE",
+                            // padding: "3px",
+                            fontSize: "20px",
+                            // borderRadius: "7px",
+                            // borderBottom: "2px solid rgba(88, 68, 53, 0.23)",
+                          }}
+                        />
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>
@@ -231,14 +335,18 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
       {showToatalHours && (
         <Grid
           xs={12}
-          style={{ display: "flex" ,justifyContent:"end", marginLeft:"10%",color: "var(--primary-color)" }}
+          style={{
+            display: "flex",
+            justifyContent: "end",
+            marginLeft: "10%",
+            color: "var(--primary-color)",
+          }}
         >
-          
           <Grid xs={4}>
-            <p style={{fontWeight:"700", fontSize:"23px"}}>Total Hours</p>
+            <p style={{ fontWeight: "700", fontSize: "23px" }}>Total Hours</p>
           </Grid>
           <Grid xs={4}>
-            <p  style={{fontWeight:"700", fontSize:"23px"}}>62:00</p>
+            <p style={{ fontWeight: "700", fontSize: "23px" }}>62:00</p>
           </Grid>
         </Grid>
       )}
@@ -255,7 +363,7 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
             <p
               style={{
                 // color: "rgb(178 183 191 / 92%)",
-                color:"#242020",
+                color: "#242020",
                 fontSize: "13px",
                 marginLeft: "3%",
                 fontWeight: "600",
@@ -265,24 +373,21 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
               {Math.min(lastindex, filteredRecords.length)} of{" "}
               {filteredRecords.length}
             </p>
-            <ul className="pagination"  >
+            <ul className="pagination">
               <li className="page-item">
                 <button
                   className="page-link"
                   href="#"
                   aria-label="Previous"
                   onClick={prepage}
-                  style={{marginTop:"-9px"}}
+                  style={{ marginTop: "-9px" }}
                 >
-                  <GrFormPrevious/>
+                  <GrFormPrevious />
                 </button>
               </li>
               {numbers.map((n, i) => (
                 <li
                   className={`page-item ${currentPage === n ? "active" : ""}`}
-                  
-                 
-                 
                   // style={{ backgroundColor: currentPage === n ? "#6F4E37" : "" , color: currentPage === n ? "white" : "" }}
 
                   key={i}
@@ -292,12 +397,12 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
                     href="#"
                     onClick={() => changeCPage(n)}
                     style={{
-                      backgroundColor: currentPage === n ? "var(--primary-color)" : "",
+                      backgroundColor:
+                        currentPage === n ? "var(--primary-color)" : "",
                       color: currentPage === n ? "white" : "",
-                      padding:"2px  10px",
-                      borderRadius:"12px",
-                      fontSize:"10px"
-                     
+                      padding: "2px  10px",
+                      borderRadius: "12px",
+                      fontSize: "10px",
                     }}
                   >
                     {n}
@@ -310,9 +415,9 @@ const CusTable = ({ TableHeading, Tabledata, TableTittle,showEmpDetails ,showToa
                   href="#"
                   aria-label="Previous"
                   onClick={Nextpage}
-                  style={{marginTop:"-9px"}}
+                  style={{ marginTop: "-9px" }}
                 >
-                  <GrFormNext style={{ fontSize: "17px"}} />
+                  <GrFormNext style={{ fontSize: "17px" }} />
                 </button>
               </li>
             </ul>

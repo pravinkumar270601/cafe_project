@@ -15,6 +15,7 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import CusTable from "../../../Components/CustomTable/CusTable";
 import * as MASTER from "../../../Components/CustomTable/Tableentries";
+import CustomSearchInput from "../../../Components/CustomSearchInput/CustomSearchInput";
 // import CustomInputDisable from "../../Components/CustomInputDisable/CustomInputDisable";
 // import "./Timesheet";
 
@@ -63,17 +64,20 @@ const HoursRecord = () => {
                         height: "30%",
                       }}
                     >
-                      <CustomDropdownMui
+                      <CustomSearchInput
                         label="Employee Id"
                         name="emp_id"
-                        custPlaceholder="Select Employee Id"
-                        //   setFieldValue={setFieldValue}
+                        custPlaceholder="Search Employee Id"
+                        setFieldValue={setFieldValue}
+                        // selectEmployeeIdfn={selectEmployeeIdfn}
                         options={[
                           { value: "1", label: "Male" },
                           { value: "2", label: "Female" },
                           { value: "3", label: "Others" },
                         ]}
-                        //   selectEmployeeIdfn={selectEmployeeIdfn}
+                        // setEmployeeName={setEmployeeName}
+                        // setButton1Disabled={setButton1Disabled}
+                        // setButton2Disabled={setButton2Disabled}
                       />
                     </Grid>
                     <Grid

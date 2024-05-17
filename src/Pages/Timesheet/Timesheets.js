@@ -9,6 +9,9 @@ import { FaBell } from "react-icons/fa";
 import ListOfLog from "../RecordTabs/ListOfLog/ListOfLog";
 import HoursRecord from "../RecordTabs/HoursRecord/HoursRecord";
 import "../Css/record.css"
+import EmployeesEntry from "../TimesheetTabs/EmployeesEntry/EmployeesEntry";
+import EntryManagement from "../TimesheetTabs/EntryManagement/EntryManagement";
+import '../Css/timesheet.css'
 
 // import "../Pages/Css/Masters.css";
 
@@ -42,7 +45,7 @@ function a11yProps(name) {
   };
 }
 
-const Record = () => {
+const Timesheets = () => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -70,7 +73,7 @@ const Record = () => {
               }}
             >
               <div className="pages-h1 d-flex align-items-center">
-                <h1>Records</h1>
+                <h1>Timesheets</h1>
               </div>
               <div className="d-flex align-items-center ">
                 <div>
@@ -95,8 +98,8 @@ const Record = () => {
             }}
           >
             <Tab
-              label="List of Log"
-              {...a11yProps("List_of_Log")}
+              label="Employees Entry"
+              {...a11yProps("Employees_Entry")}
               sx={{
                 marginLeft: "30px",
                 marginRight: "150px",
@@ -104,8 +107,8 @@ const Record = () => {
               }}
             />
             <Tab
-              label="Hours Record"
-              {...a11yProps("Hours_record")}
+              label="Entry Management"
+              {...a11yProps("Entry_Management")}
               sx={{ marginRight: "150px", textTransform: "none" }}
             />
             {/* <Tab
@@ -128,10 +131,10 @@ const Record = () => {
         </Box>
         <Box sx={{ width: " 100%", height: "82%" }}>
           <CustomTabPanel value={value} index={0}>
-            <ListOfLog />
+            <EmployeesEntry/>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            <HoursRecord />
+            <EntryManagement/>
           </CustomTabPanel>
           {/* <CustomTabPanel value={value} index={2}>
             <CategoryTab />
@@ -148,4 +151,4 @@ const Record = () => {
   );
 };
 
-export default Record;
+export default Timesheets;

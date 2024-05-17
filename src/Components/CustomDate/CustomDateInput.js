@@ -6,6 +6,7 @@ import { CiCalendar } from "react-icons/ci";
 import { FcCalendar } from "react-icons/fc";
 import "./CustomDateInput.css";
 import "../ComponentsCss/componet.css";
+import calSvgIcon from "../../Assets/Icons8_flat_calendar.svg";
 
 const CustomDateInput = ({ label, name, ...rest }) => {
   const handleIconClick = () => {
@@ -14,11 +15,11 @@ const CustomDateInput = ({ label, name, ...rest }) => {
 
   return (
     <div style={{ width: "85%" }} className="CustomDateInput-div">
-      <label htmlFor={name}
-      className="input-heading"
-      >{label}</label>
+      <label htmlFor={name} className="input-heading">
+        {label}
+      </label>
       <div style={{ position: "relative", width: "100%" }}>
-        <Field name={name} style={{ width: "100%",  }}>
+        <Field name={name} style={{ width: "100%" }}>
           {({ field, form }) => (
             <DatePicker
               {...field}
@@ -27,15 +28,19 @@ const CustomDateInput = ({ label, name, ...rest }) => {
               selected={field.value}
               className="customdateinput-field"
               onChange={(date) => form.setFieldValue(field.name, date)}
-              placeholderText={"Select date"} 
+              placeholderText={"Select date"}
             />
           )}
         </Field>
-        <FcCalendar
+        <img
+          src={calSvgIcon}
+          alt="date"
           style={{
             color: "blue",
+            height:"20px",
+            width:"18px",
             position: "absolute",
-            fontSize:"21px",
+            fontSize: "21px",
             // right: '10px',
             cursor: "pointer",
             right: "18px",
@@ -44,6 +49,7 @@ const CustomDateInput = ({ label, name, ...rest }) => {
           }}
           onClick={handleIconClick} // Handle click event on the calendar icon
         />
+        
       </div>
       <ErrorMessage name={name} component="div" className="inputs-error-msg" />
     </div>

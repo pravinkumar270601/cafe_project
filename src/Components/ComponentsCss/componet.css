@@ -7,3 +7,8 @@
 .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border: 1px solid rgba(0, 0, 0) !important; /* Set border color to 1px when focused */
   }
+
+
+.custom-select__control--is-focused {
+    border-color: black !important;
+}

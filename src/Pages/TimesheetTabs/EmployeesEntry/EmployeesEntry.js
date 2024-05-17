@@ -1,28 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid } from "@mui/material";
-import "../Css/timesheet.css";
-import userIcon from "../../Assets/user.png";
-import CustomInput from "../../Components/CustomInput/CustomInput";
-import CustomDropdownMui from "../../Components/CustomDropDown/CustomDropdown";
-import actions from "../../ReduxStore/actions/index";
+import actions from "../../../ReduxStore/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from "formik";
-import { FaBell } from "react-icons/fa";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import CusTable from "../../Components/CustomTable/CusTable";
-import * as MASTER from "../../Components/CustomTable/Tableentries";
-import CustomInputDisable from "../../Components/CustomInputDisable/CustomInputDisable";
-import "./Timesheet";
-import CustomSearchInput from "../../Components/CustomInputSearch/CustomSearch";
+import CustomSearchInput from "../../../Components/CustomSearchInput/CustomSearchInput";
+import CustomInputDisable from "../../../Components/CustomInputDisable/CustomInputDisable";
+import CusTable from "../../../Components/CustomTable/CusTable";
+import * as MASTER from "../../../Components/CustomTable/Tableentries";
+import axios from "axios";
 
-// import * as Yup from "yup";
-// import axios from "axios";
-// import Toast from "../Components/Toast/Toaste";
-
-const Timesheet = () => {
+const EmployeesEntry = () => {
   const dispatch = useDispatch();
   const [apiUpdateId, setapiUpdateId] = useState(null);
 
@@ -32,22 +23,35 @@ const Timesheet = () => {
   const { TimeSheetUpdate } = useSelector((state) => state?.TimeSheetUpdate);
   console.log(TimeSheetUpdate, "TimeSheetUpdate");
 
+  const { TimeSheetGetById } = useSelector((state) => state?.TimeSheetGetById);
+  console.log(TimeSheetGetById, "TimeSheetGetById");
+
   const { TimeSheetDropdown } = useSelector(
     (state) => state?.TimeSheetDropdown
   );
   // console.log(TimeSheetDropdown,"TimeSheetDropdown");
 
+  const [button1Disabled, setButton1Disabled] = useState(false);
+  const [button2Disabled, setButton2Disabled] = useState(false);
+
+  const [employeeName, setEmployeeName] = useState(" ");
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     // Handle form submission
     console.log(values);
-    // if (true) {
-    // const data1 = {
-    //   data: { ...values },
-    //   method: "post",
-    //   apiName: "createEmployee",
-    // };
+    // const EmployeeId = values.emp_id.value
+    if (!button1Disabled) {
+      console.log("check in ");
+      const data1 = {
+        data: { ...values, emp_id: values.emp_id.value },
+        method: "post",
+        apiName: "createEmployee",
+      };
 
-    // dispatch(actions.TIMESHEETCREATE(data1));
+      dispatch(actions.TIMESHEETCREATE(data1));
+      setButton1Disabled(true);
+      setButton2Disabled(true);
+      setEmployeeName(' ')
+    }
 
     //   if (MovieCreate?.data) {
     //     triggerToast("Successfully Created!");
@@ -60,16 +64,21 @@ const Timesheet = () => {
 
     // updating fuction for data
 
-    // if (changebtn === false) {
-    // console.log(apiUpdateId,"update ")
+    if (!button2Disabled) {
+      console.log("check out ");
+      console.log(apiUpdateId, "update ");
 
-    const data2 = {
-      data: {},
-      method: "put",
-      apiName: `updateEmployee/${apiUpdateId}`,
-    };
+      const data2 = {
+        data: {},
+        method: "put",
+        apiName: `updateEmployee/${apiUpdateId}`,
+      };
 
-    dispatch(actions.TIMESHEETUPDATE(data2));
+      dispatch(actions.TIMESHEETUPDATE(data2));
+      setButton1Disabled(true);
+      setButton2Disabled(true);
+      setEmployeeName(' ')
+    }
 
     //   setchangebtn(true);
     //   if (MovieUpdate?.data) {
@@ -80,55 +89,60 @@ const Timesheet = () => {
     //     setBackColor("red")
     //   }
 
-    // const data = { data: {}, method: "get", apiName: "getmovieDetails" };
-    // dispatch(actions.MOVIESTABLEGETALL(data));
-    // }
-
-    // console.log("Dispatching MOVIESTABLEGETALL action:", data);
-
     // Reset the form
     resetForm();
     setSubmitting(false);
   };
 
-  const [button1Disabled, setButton1Disabled] = useState(false);
-  const [button2Disabled, setButton2Disabled] = useState(false);
-
   useEffect(() => {
     // Set CheckIn as default when component mounts
-    setButton1Disabled(false);
-    setButton2Disabled(false);
+    setButton1Disabled(true);
+    setButton2Disabled(true);
   }, []);
 
-  const handleButton1Click = () => {
-    setButton1Disabled(true);
-    setButton2Disabled(false);
-  };
 
-  const handleButton2Click = () => {
-    setButton1Disabled(false);
-    setButton2Disabled(true);
-  };
 
-  const [employeeName, setEmployeeName] = useState(" ");
-  const selectEmployeeIdfn = (name, id) => {
+  const selectEmployeeIdfn = async (name, id) => {
     console.log(name, "selectmovieIdfn");
-    console.log(id, "selectmovieIdfn");
-    setapiUpdateId(id);
+    console.log(id.value, "selectmovieIdfn");
 
+    // login logout checker api
+
+    const data = {
+      data: {},
+      method: "get",
+      apiName: `logValidation/${id.value}`,
+    };
+    dispatch(actions.TIMESHEETGETBYID(data));
+
+    // emp id showing logic
     const getemp_name = TimeSheetDropdown?.data?.filter(
-      (data) => data.id == id
+      (data) => data.id == id.value
     );
     setEmployeeName(getemp_name[0].name);
 
-    const data1 = {
-      data: { movie_id: id },
-      method: "post",
-      apiName: "dropdownCategory",
-    };
-
-    // console.log(data1);
-    // dispatch(actions.CATEGORYDROPDOWN(data1));
+    try {
+      const response = await axios.get(
+        `http://122.165.52.124:8080/api/v1/logValidation/${id.value}`
+      );
+      const CheckingButtonShow = await response.data;
+      console.log(CheckingButtonShow.data, "CheckingButtonShow"); // Assuming your API returns movie data
+      setapiUpdateId(CheckingButtonShow.data.log_id);
+      const btnData = CheckingButtonShow.data.log_id;
+      console.log(btnData, "btnData");
+      if (btnData) {
+        console.log("check out btn show");
+        setButton1Disabled(true);
+        setButton2Disabled(false);
+      } else {
+        console.log("check in btn show");
+        setButton1Disabled(false);
+        setButton2Disabled(true);
+      }
+    } catch (error) {
+      console.error("Error fetching logValidation :", error);
+      // Handle error
+    }
   };
 
   useEffect(() => {
@@ -193,78 +207,15 @@ const Timesheet = () => {
     setRowTableData2(tempArr);
   }, [TimeSheetGetAll]);
 
-  const predefinedSuggestions = [
-    { value: 1, label: "Apple" },
-    { value: 2, label: "Banana" },
-    { value: 3, label: "Orange" },
-    { value: 4, label: "Pineapple" },
-    { value: 5, label: "Grapes" },
-  ];
-
   return (
-    <div
-      className="Timesheet-div"
-      style={{
-        minHeight: "100vh",
-        maxHeight: "100%",
-        // height:"100%",
-        width: "100%",
-        // background: "blue",
-      }}
-    >
+    <div style={{ height: "100%", width: "100%" }}>
       <Grid
         container
         md={12}
-        sx={{
-          width: "100%",
+        style={{
+          height: "100%",
         }}
       >
-        <Grid
-          item
-          md={12}
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            backgroundColor: "var(--primary-color)",
-          }}
-        >
-          <div className="pages-h1 d-flex align-items-center">
-            <h1>Timesheet</h1>
-          </div>
-          <div className="d-flex align-items-center ">
-            <div>
-              <FaBell className="user-bell" />
-            </div>
-            <div className="user-line"></div>
-            <div className=" user-div d-flex ">
-              <div className="user-img-div ">
-                <img src={userIcon} alt="User" />
-              </div>
-              <div className="username">Mohan </div>
-            </div>
-          </div>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "20px",
-            // background: "white",
-          }}
-        >
-          <div className="heading-line-div">
-            <div className="head-line-div">
-              <h4> Employee Entry </h4>
-              <div className="heading-line"></div>
-            </div>
-            {/* <div className="head-line-div">
-              <h4> Employee Entry </h4>
-              <div className="heading-line"></div>
-            </div> */}
-          </div>
-        </Grid>
         {/* input field */}
         <Grid item md={12} sx={{ height: "170px", marginTop: "20px" }}>
           <Formik
@@ -298,18 +249,17 @@ const Timesheet = () => {
                         marginTop: "5px",
                       }}
                     >
-                      <CustomDropdownMui
+                      <CustomSearchInput
                         label="Employee Id"
                         name="emp_id"
-                        custPlaceholder="Select Employee Id"
+                        custPlaceholder="Search Employee Id"
                         setFieldValue={setFieldValue}
-                        options={timeSheetDrop}
                         selectEmployeeIdfn={selectEmployeeIdfn}
+                        options={timeSheetDrop}
+                        setEmployeeName={setEmployeeName}
+                        setButton1Disabled={setButton1Disabled}
+                        setButton2Disabled={setButton2Disabled}
                       />
-                      {/* <CustomSearchInput
-                        predefinedSuggestions={predefinedSuggestions}
-                        
-                      /> */}
                     </Grid>
                     <Grid
                       item
@@ -320,24 +270,21 @@ const Timesheet = () => {
                         marginTop: "5px",
                       }}
                     >
-                      {/* <CustomInput
-                        label="Employee Name"
-                        name="employee_name"
-                        inputType={"text"}
-                        custPlaceholder=" "
-                      /> */}
                       <CustomInputDisable
                         label="Employee Name"
                         name={employeeName}
+                        
                       />
                     </Grid>
+
                     <Grid
                       item
                       xs={4}
                       sx={{
                         display: "flex",
                         justifyContent: "end",
-                        marginTop: "20px",
+                        marginTop: "2.3%",
+                        // alignItems: "center",
                       }}
                     >
                       <ButtonGroup>
@@ -355,7 +302,7 @@ const Timesheet = () => {
                             textTransform: "none",
                             fontSize: "13px",
                             color: "white",
-                            filter: button1Disabled ? "blur(2px)" : "none",
+                            filter: button1Disabled ? "blur(1px)" : "none",
                           }}
                         >
                           Check-In
@@ -375,21 +322,19 @@ const Timesheet = () => {
                             textTransform: "none",
                             fontSize: "13px",
                             cursor: button2Disabled ? "none" : "pointer",
-                            filter: button2Disabled ? "blur(2px)" : "none",
+                            filter: button2Disabled ? "blur(1px)" : "none",
                           }}
                         >
                           Check-Out
                         </Button>
                       </ButtonGroup>
                     </Grid>
-                    {/* {fourth Row} */}
                   </Grid>
                 </Container>
               </Form>
             )}
           </Formik>
         </Grid>
-
         <Grid item md={12} sx={{}}>
           <Container
             style={{
@@ -399,7 +344,7 @@ const Timesheet = () => {
               marginBottom: "15px",
               background: "white",
               borderRadius: "10px",
-              // boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+              //   boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
             }}
           >
             <Grid container>
@@ -424,4 +369,4 @@ const Timesheet = () => {
   );
 };
 
-export default Timesheet;
+export default EmployeesEntry;

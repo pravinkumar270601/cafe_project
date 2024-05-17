@@ -18,6 +18,7 @@ import * as MASTER from "../../../Components/CustomTable/Tableentries";
 // import CustomInputDisable from "../../Components/CustomInputDisable/CustomInputDisable";
 // import "./Timesheet";
 import CustomInputDisable from "../../../Components/CustomInputDisable/CustomInputDisable";
+import CustomSearchInput from "../../../Components/CustomSearchInput/CustomSearchInput";
 
 const StaffDetails = () => {
   return (
@@ -63,17 +64,20 @@ const StaffDetails = () => {
                         height: "30%",
                       }}
                     >
-                      <CustomDropdownMui
+                      <CustomSearchInput
                         label="Employee Id"
                         name="emp_id"
-                        custPlaceholder="Select Employee Id"
-                        //   setFieldValue={setFieldValue}
+                        custPlaceholder="Search Employee Id"
+                        setFieldValue={setFieldValue}
+                        // selectEmployeeIdfn={selectEmployeeIdfn}
                         options={[
                           { value: "1", label: "Male" },
                           { value: "2", label: "Female" },
                           { value: "3", label: "Others" },
                         ]}
-                        //   selectEmployeeIdfn={selectEmployeeIdfn}
+                        // setEmployeeName={setEmployeeName}
+                        // setButton1Disabled={setButton1Disabled}
+                        // setButton2Disabled={setButton2Disabled}
                       />
                     </Grid>
                     <Grid
@@ -104,9 +108,13 @@ const StaffDetails = () => {
                         height: "30%",
                       }}
                     >
-                      <CustomInputDisable
+                      <CustomInput
                         label="Wages"
-                        name={" "}
+                        name="Wages"
+                        inputType={"text"}
+                        custPlaceholder=" "
+                        showtextPlaceholder={true} // or false based on your requirement
+                        textPlaceholder="/hour"
                       />
                     </Grid>
                     <Grid item xs={4}></Grid>
@@ -159,8 +167,8 @@ const StaffDetails = () => {
             <Grid container>
               <Grid item xs={12}>
                 <CusTable
-                  TableHeading={MASTER.CreateEmployeeTableHeaders}
-                  Tabledata={MASTER.CreateEmployeeTableValues}
+                  TableHeading={MASTER.StaffDetailsTableHeaders}
+                  Tabledata={MASTER.StaffDetailsTableValues}
                   TableTittle="Overview"
                   showEmpDetails={false}
                   // handleDeleteIdChange={handleDeleteIdChange}
