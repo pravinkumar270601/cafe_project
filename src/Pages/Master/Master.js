@@ -9,6 +9,7 @@ import { FaBell } from "react-icons/fa";
 import "../Css/record.css"
 import BranchMaster from "../MasterTabs/BranchMaster/BranchMaster";
 import EmployeeMaster from "../MasterTabs/EmployeeMaster/EmployeeMaster";
+import CompanyMaster from "../MasterTabs/CompanyMaster/CompanyMaster"
 
 // import "../Pages/Css/Masters.css";
 
@@ -94,6 +95,12 @@ const Master = () => {
               height: "45%",
             }}
           >
+
+<Tab
+              label="Company Master"
+              {...a11yProps("Company_Master")}
+              sx={{ marginRight: "150px", textTransform: "none",marginLeft: "30px", }}
+            />
             <Tab
               label="Branch Master"
               {...a11yProps("Branch_Master")}
@@ -108,6 +115,7 @@ const Master = () => {
               {...a11yProps("Employee_Master")}
               sx={{ marginRight: "150px", textTransform: "none" }}
             />
+             
             {/* <Tab
               label="Category"
               {...a11yProps("Category")}
@@ -126,16 +134,17 @@ const Master = () => {
             /> */}
           </Tabs>
         </Box>
-        <Box sx={{ width: " 100%", height: "82%", marginTop: "1%" }}>
-          <CustomTabPanel value={value} index={0}>
-            <BranchMaster />
+        <Box sx={{ width: " 100%", height: "82%" }}>
+        <CustomTabPanel value={value} index={0}>
+            <CompanyMaster/>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
+            <BranchMaster />
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={2}>
             <EmployeeMaster />
           </CustomTabPanel>
-          {/* <CustomTabPanel value={value} index={2}>
-            <CategoryTab />
-          </CustomTabPanel> */}
+         
           {/* <CustomTabPanel value={value} index={3}>
             <SubcategoryTab />
           </CustomTabPanel>

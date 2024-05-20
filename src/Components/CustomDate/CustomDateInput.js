@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Field, ErrorMessage } from "formik";
-import { CiCalendar } from "react-icons/ci";
-import { FcCalendar } from "react-icons/fc";
+import { Field, ErrorMessage, useFormikContext } from "formik";
 import "./CustomDateInput.css";
-import "../ComponentsCss/componet.css";
 import calSvgIcon from "../../Assets/Icons8_flat_calendar.svg";
 
-const CustomDateInput = ({ label, name, ...rest }) => {
+const CustomDateInput = ({ label, name }) => {
+  const { setFieldValue, values } = useFormikContext();
+
   const handleIconClick = () => {
     document.getElementById(name).click();
+  };
+
+  const handleStartDateClick = () => {
+    // Set end date value to start date value when start date is clicked
+    if (name === "date1" && !values.date1) {
+      setFieldValue("date1", values.date);
+    }
   };
 
   return (
@@ -23,12 +29,14 @@ const CustomDateInput = ({ label, name, ...rest }) => {
           {({ field, form }) => (
             <DatePicker
               {...field}
-              {...rest}
               id={name} // Assign id to the date field
               selected={field.value}
               className="customdateinput-field"
               onChange={(date) => form.setFieldValue(field.name, date)}
               placeholderText={"Select date"}
+              minDate={name === "date1" ? values.date : null} // Set minDate based on the name
+              startDate={name === "date1" ? values.date : null} // Set initial value based on the name
+              onClick={handleStartDateClick} // Handle click event on the start date picker
             />
           )}
         </Field>
@@ -41,7 +49,6 @@ const CustomDateInput = ({ label, name, ...rest }) => {
             width:"18px",
             position: "absolute",
             fontSize: "21px",
-            // right: '10px',
             cursor: "pointer",
             right: "18px",
             top: "50%",

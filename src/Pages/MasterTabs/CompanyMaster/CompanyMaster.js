@@ -1,25 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid } from "@mui/material";
+import React from "react";
 // import "../Css/timesheet.css";
 
 import CustomInput from "../../../Components/CustomInput/CustomInput";
-import CustomDropdownMui from "../../../Components/CustomDropDown/CustomDropdown";
-import CustomDateInput from "../../../Components/CustomDate/CustomDateInput";
 import CustomPhoneNumber from "../../../Components/CustomPhoneNb/CustomPhoneNumber";
 // import actions from "../../ReduxStore/actions/index";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Form } from "formik";
-import { FaBell } from "react-icons/fa";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import { RiLogoutBoxRLine } from "react-icons/ri";
-import { RiLogoutBoxLine } from "react-icons/ri";
-import CusTable from "../../../Components/CustomTable/CusTable";
+import { Form, Formik } from "formik";
 import * as MASTER from "../../../Components/CustomTable/Tableentries";
+import Table from "../../../Components/CustomTable/CusTable";
 // import CustomInputDisable from "../../Components/CustomInputDisable/CustomInputDisable";
 // import "./Timesheet";
 
-const BranchMaster = () => {
+const CompanyMaster = () => {
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <Grid
@@ -83,9 +75,9 @@ const BranchMaster = () => {
                       }}
                     >
                       <CustomInput
-                        label="Branch Location"
-                        name="Branch_location"
-                        inputType={"text"}
+                        label="Company Registration Number"
+                        name="Company_Registration_Number"
+                        inputType={"Number"}
                         custPlaceholder=" "
                       />
                     </Grid>
@@ -100,8 +92,8 @@ const BranchMaster = () => {
                       }}
                     >
                       <CustomInput
-                        label="Branch Email"
-                        name="Branch_email"
+                        label="Company Email"
+                        name="Company_email"
                         inputType={"email"}
                         custPlaceholder=" "
                       />
@@ -248,12 +240,38 @@ const BranchMaster = () => {
                     >
                       <CustomPhoneNumber
                         label="Landline Number"
-                        name="phoneNumber"
+                        name="landlinenumber"
                       />
                     </Grid>
 
-                    <Grid item xs={4}></Grid>
-                    <Grid item xs={4}></Grid>
+                    <Grid item xs={4}sx={{
+                        display: "flex",
+                        justifyContent: "start",
+                        marginTop: "5px",
+                      }}
+                    >
+                      <CustomInput
+                        label="Language"
+                        name="language"
+                        inputType={"text"}
+                        custPlaceholder=" "
+                      />
+                        
+                    </Grid>
+                    <Grid item xs={4}
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "5px",
+                      }}
+                    >
+                      <CustomInput
+                        label="Currency"
+                        name="currency"
+                        inputType={"number"}
+                        custPlaceholder=" "
+                      />
+                    </Grid>
                     <Grid
                       item
                       xs={4}
@@ -302,9 +320,9 @@ const BranchMaster = () => {
           >
             <Grid container>
               <Grid item xs={12}>
-                <CusTable
-                  TableHeading={MASTER.BranchMasterTableHeaders}
-                  Tabledata={MASTER.BranchMasterTableValues}
+                <Table
+                  TableHeading={MASTER.CompanyMasterTableHeaders}
+                  Tabledata={MASTER.CompanyMasterTableValues}
                   TableTittle="Overview"
                   // showEmpDetails={true}
                   showAction={true}
@@ -323,4 +341,4 @@ const BranchMaster = () => {
   );
 };
 
-export default BranchMaster;
+export default CompanyMaster;

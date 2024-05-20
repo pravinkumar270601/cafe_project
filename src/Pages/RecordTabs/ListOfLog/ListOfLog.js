@@ -21,6 +21,13 @@ import CustomSearchInput from "../../../Components/CustomSearchInput/CustomSearc
 
 
 const ListOfLog = () => {
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    // Handle form submission
+    console.log(values);
+    // const EmployeeId = values.emp_id.value
+    resetForm();
+    setSubmitting(false);
+  };
   return (
     <div style={{ height:"100%", width: "100%" }}>
       <Grid
@@ -38,7 +45,7 @@ const ListOfLog = () => {
               employee_name: "",
             }}
             style={{ height: "100%" }}
-            //   onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
           >
             {({ isSubmitting, resetForm, setFieldValue }) => (
               <Form style={{ height: "100%" }} className="fomik-form">

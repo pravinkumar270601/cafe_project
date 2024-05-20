@@ -76,7 +76,7 @@
 }
 .custom-table td,
 th {
-  padding: 7px !important;
+  padding: 5px !important;
   /* border-bottom: 1px solid rgb(88, 68, 53); */
   /* box-shadow: 0 0 0 2px rgba(111 78 55  0.9); */
   
@@ -101,7 +101,7 @@ th {
 .Table_search_input {
   width: 229px;
   box-sizing: border-box;
-  border: 2px solid #93989d;
+  border: 1px solid #666869;
   border-radius: 19px;
   padding: 5px;
   font-size: 14px;

@@ -1,19 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid } from "@mui/material";
+import React from "react";
 // import "../Css/timesheet.css";
 
-import CustomInput from "../../../Components/CustomInput/CustomInput";
-import CustomDropdownMui from "../../../Components/CustomDropDown/CustomDropdown";
 import CustomDateInput from "../../../Components/CustomDate/CustomDateInput";
+import CustomDropdownMui from "../../../Components/CustomDropDown/CustomDropdown";
+import CustomInput from "../../../Components/CustomInput/CustomInput";
 import CustomPhoneNumber from "../../../Components/CustomPhoneNb/CustomPhoneNumber";
 // import actions from "../../ReduxStore/actions/index";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Form } from "formik";
-import { FaBell } from "react-icons/fa";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import { RiLogoutBoxRLine } from "react-icons/ri";
-import { RiLogoutBoxLine } from "react-icons/ri";
+import { Email, Password } from "@mui/icons-material";
+import { Form, Formik } from "formik";
 import CusTable from "../../../Components/CustomTable/CusTable";
 import * as MASTER from "../../../Components/CustomTable/Tableentries";
 // import ModelOpen from "../../Components/ModelOpen/ModelOpen";
@@ -79,126 +74,6 @@ const EmployeeMaster = () => {
                         display: "flex",
                         justifyContent: "start",
                         marginTop: "5px",
-                        // height: "30%",
-                      }}
-                    >
-                      
-
-                      <CustomInput
-                        label="Employee Name"
-                        name="Employee_name"
-                        inputType={"text"}
-                        custPlaceholder=" "
-                      />
-                    </Grid>
-                    <Grid
-                      item
-                      xs={4}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        marginTop: "5px",
-                        // height: "30%",
-                      }}
-                    >
-                      <CustomInput
-                        label="Employee Id"
-                        name="Employee_Id"
-                        inputType={"text"}
-                        custPlaceholder=" "
-                      />
-                    </Grid>
-                    <Grid
-                      item
-                      xs={4}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "end",
-                        marginTop: "5px",
-                        // height: "30%",
-                      }}
-                    >
-                      <CustomInput
-                        label="Email Email"
-                        name="Employee_email"
-                        inputType={"email"}
-                        custPlaceholder=" "
-                      />
-                    </Grid>
-
-                    <Grid
-                      item
-                      xs={4}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "start",
-                        marginTop: "5px",
-                        // height: "30%",
-                      }}
-                    >
-                      <CustomInput
-                        label="Mobile Number"
-                        name="Mobile_Number"
-                        inputType={"number"}
-                        custPlaceholder=" "
-                      />
-                    </Grid>
-                    <Grid
-                      item
-                      xs={4}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        marginTop: "5px",
-                        // height: "30%",
-                      }}
-                    >
-                      <CustomDropdownMui
-                        label="Designation"
-                        name="Designation"
-                        custPlaceholder="Select Designation"
-                        //   setFieldValue={setFieldValue}
-                        options={[
-                          // {value:"0",label:""},
-                          { value: "1", label: "Cashier" },
-                          { value: "2", label: "Worker" },
-                          { value: "3", label: "Helper" },
-                        ]}
-                        //   selectEmployeeIdfn={selectEmployeeIdfn}
-                      />
-                    </Grid>
-                    <Grid
-                      item
-                      xs={2}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "end",
-                        marginTop: "5px",
-                        // height: "30%",
-                      }}
-                    >
-                      <CustomDateInput label="From Date" name="date12" />
-                    </Grid>
-                    <Grid
-                      item
-                      xs={2}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "end",
-                        marginTop: "5px",
-                        // height: "30%",/
-                      }}
-                    >
-                      <CustomDateInput label="End Date" name="date123" />
-                    </Grid>
-
-                    <Grid
-                      item
-                      xs={4}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "start",
-                        marginTop: "5px",
                       }}
                     >
                       <CustomDropdownMui
@@ -222,12 +97,120 @@ const EmployeeMaster = () => {
                         display: "flex",
                         justifyContent: "center",
                         marginTop: "5px",
+                        // height: "30%",
                       }}
                     >
                       <CustomInput
-                        label="Street"
-                        name="Street"
+                        label="Employee Name"
+                        name="Employee_Name"
                         inputType={"text"}
+                        custPlaceholder=" "
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "end",
+                        marginTop: "5px",
+                        // height: "30%",
+                      }}
+                    >
+                      <CustomInput
+                        label="Employee Id"
+                        name="Employee_Id"
+                        inputType={"text"}
+                        custPlaceholder=" "
+                      />
+                    </Grid>
+
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "start",
+                        marginTop: "5px",
+                        // height: "30%",
+                      }}
+                    >
+                      <CustomDropdownMui
+                        label="Designation"
+                        name="Designation"
+                        custPlaceholder="Select Designation"
+                        //   setFieldValue={setFieldValue}
+                        options={[
+                          // {value:"0",label:""},
+                          { value: "1", label: "Cashier" },
+                          { value: "2", label: "Worker" },
+                          { value: "3", label: "Helper" },
+                        ]}/>
+                        
+                    </Grid>
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "5px",
+                        // height: "30%",
+                      }}
+                    >
+                      <CustomInput
+                        label="Email"
+                        name="email"
+                       inputType={Email}
+                       custPlaceholder=" " 
+                        
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "end",
+                        marginTop: "5px",
+                        // height: "30%",
+                      }}
+                    >
+                      <CustomInput label="Password" name="password" 
+                      inputType={Password}
+                      custPlaceholder=" "/>
+                    </Grid>
+                    
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "Start",
+                        marginTop: "5px",
+                        // height: "30%",
+                      }}
+                    >
+                      <CustomPhoneNumber
+                        label="Mobile Number"
+                        name="phoneNumber"
+                      
+                        //   selectEmployeeIdfn={selectEmployeeIdfn}
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "5px",
+                      }}
+                    >
+                      <CustomDateInput
+                        label="DOJ"
+                        name="Joining_Date"
+                        
                         custPlaceholder=" "
                       />
                     </Grid>
@@ -240,10 +223,10 @@ const EmployeeMaster = () => {
                         marginTop: "5px",
                       }}
                     >
-                      <CustomInput
-                        label="City"
-                        name="city"
-                        inputType={"text"}
+                      <CustomDateInput
+                        label="DOB"
+                        name="Birth_Date"
+                        
                         custPlaceholder=" "
                       />
                     </Grid>
@@ -257,74 +240,51 @@ const EmployeeMaster = () => {
                       }}
                     >
                       <CustomInput
-                        label="State"
-                        name="state"
-                        inputType={"text"}
-                        custPlaceholder=" "
-                      />
-                    </Grid>
-                    <Grid
-                      item
-                      xs={4}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        marginTop: "5px",
-                      }}
-                    >
-                      <CustomInput
-                        label="Country"
-                        name="country"
-                        inputType={"text"}
-                        custPlaceholder=" "
-                      />
-                    </Grid>
-                    <Grid
-                      item
-                      xs={4}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "end",
-                        marginTop: "5px",
-                      }}
-                    >
-                      <CustomInput
-                        label="Pincode"
-                        name="pincode"
+                        label="Adhaar Number"
+                        name="Number"
                         inputType={"number"}
                         custPlaceholder=" "
                       />
                     </Grid>
-
-                    <Grid item xs={4}></Grid>
-                    <Grid item xs={4}></Grid>
-                    <Grid
-                      item
-                      xs={4}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "end",
-                        alignItems: "center",
-                        marginTop: "15px",
-                      }}
+                    <Grid>
+                      
+                    </Grid>
+                    <Grid item      xs={4}
+                     
                     >
-                      <button
-                        type="submit"
-                        //   disabled={isSubmitting}
-                        // onClick={() => setDefaultFieldValues(setFieldValue)}
-                        className="expense-submit-btn"
-                      >
-                        Submit
-                      </button>
+                      
+                      
+                    </Grid>
 
-                      <button
-                        type="button"
-                        onClick={() => {}}
-                        className="expense-cancel-btn"
-                        style={{ border: "1px solid var(--primary-color)" }}
-                      >
-                        Cancel
-                      </button>
+                    <Grid item xs={4}
+                     
+                     sx={{
+                       display: "flex",
+                       justifyContent: "end",
+                       alignItems: "end",
+                       marginTop: "15px",
+                     }}
+                   >
+                     <button
+                       type="submit"
+                       //   disabled={isSubmitting}
+                       // onClick={() => setDefaultFieldValues(setFieldValue)}
+                       className="expense-submit-btn"
+                     >
+                       Submit
+                     </button>
+
+                     <button
+                       type="button"
+                       onClick={() => {}}
+                       className="expense-cancel-btn"
+                       style={{ border: "1px solid var(--primary-color)" }}
+                     >
+                       Cancel
+                     </button></Grid>
+                    <Grid item xs={4}></Grid>
+                    <Grid>
+                      
                     </Grid>
                   </Grid>
                 </Container>

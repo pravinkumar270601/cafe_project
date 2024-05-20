@@ -29,8 +29,6 @@ export const HoursRecordTableHeaders = [
 export const BranchMasterTableHeaders = [
   "S.No",
 
-  "Branch",
-
   "Branch Location",
   "Street/Building",
   "City/State/Pincode",
@@ -39,8 +37,9 @@ export const BranchMasterTableHeaders = [
 ];
 export const EmployeeMasterTableHeaders = [
   "S.No",
-  "Employee Name",
-  "Employee Id",
+  "Name",
+  "Id",
+  "Designation",
   "Email",
   "Branch",
   "Action",
@@ -66,11 +65,24 @@ export const StaffDetailsTableHeaders = [
   "Wages",
 ];
 
+export const CompanyMasterTableHeaders = [
+  "S.No",
+
+  "Company",
+
+  
+  "Street/Building",
+  "City/State/Pincode",
+  "Country",
+  "Action",
+];
 export const EmployeeMasterTableValues = [
   {
     Sno: "1",
     EmployeeName: "Biddu",
     EmployeeId: "001",
+    Designation:"Admin",
+
     E_Mail: "teaboy123@gmail.com",
     Branch: "6th Main Rd,V Block,Anna Nagar",
   },
@@ -78,6 +90,7 @@ export const EmployeeMasterTableValues = [
     Sno: "2",
     EmployeeName: "Pravin M",
     EmployeeId: "002",
+    Designation:"Employee",
     E_Mail: "teaboy123@gmail.com",
     Branch: "6th Main Rd,V Block,Anna Nagar",
   },
@@ -86,6 +99,7 @@ export const EmployeeMasterTableValues = [
     EmployeeName: "Pravin R",
 
     EmployeeId: "003",
+    Designation:"Employee",
     E_Mail: "teaboy123@gmail.com",
     Branch: "6th Main Rd,V Block,Anna Nagar",
   },
@@ -94,6 +108,7 @@ export const EmployeeMasterTableValues = [
     EmployeeName: "Valla",
 
     EmployeeId: "004",
+    Designation:"Employee",
     E_Mail: "teaboy123@gmail.com",
     Branch: "6th Main Rd,V Block,Anna Nagar",
   },
@@ -102,6 +117,7 @@ export const EmployeeMasterTableValues = [
     EmployeeName: "Arun",
 
     EmployeeId: "006",
+    Designation:"Manager",
     E_Mail: "teaboy123@gmail.com",
     Branch: "6th Main Rd,V Block,Anna Nagar",
   },
@@ -110,22 +126,25 @@ export const EmployeeMasterTableValues = [
     EmployeeName: "Dinesh",
 
     EmployeeId: "006",
+    Designation:"Employee",
     E_Mail: "teaboy123@gmail.com",
     Branch: "6th Main Rd,V Block,Anna Nagar",
   },
   {
     Sno: "7",
     EmployeeName: "Binu",
-
+   
     EmployeeId: "007",
+    Designation:"Employee",
     E_Mail: "teaboy123@gmail.com",
     Branch: "6th Main Rd,V Block,Anna Nagar",
   },
   {
     Sno: "8",
     EmployeeName: "Raj",
-
+   
     EmployeeId: "008",
+    Designation:"Employee",
     E_Mail: "teaboy123@gmail.com",
     Branch: "6th Main Rd,V Block,Anna Nagar",
   },
@@ -134,7 +153,7 @@ export const EmployeeMasterTableValues = [
 export const BranchMasterTableValues = [
   {
     Sno: "1",
-    Branch: "Mohan&Co",
+   
     Branch_Location: "Anna Nagar",
     Street_Building: "6th Main Rd,V Block,Anna Nagar",
     City_State_Pincode: "Chennai,Tamil Nadu 600014",
@@ -142,7 +161,7 @@ export const BranchMasterTableValues = [
   },
   {
     Sno: "2",
-    Branch: "Empty Cafe",
+  
     Branch_Location: "Anna Nagar",
     Street_Building: "6th Main Rd,V Block,Anna Nagar",
     City_State_Pincode: "Chennai,Tamil Nadu 600014",
@@ -150,7 +169,7 @@ export const BranchMasterTableValues = [
   },
   {
     Sno: "3",
-    Branch: "Tea",
+   
     Branch_Location: "Anna Nagar",
     Street_Building: "6th Main Rd,V Block,Anna Nagar",
     City_State_Pincode: "Chennai,Tamil Nadu 600014",
@@ -158,7 +177,7 @@ export const BranchMasterTableValues = [
   },
   {
     Sno: "4",
-    Branch: "Cafe",
+ 
     Branch_Location: "Anna Nagar",
     Street_Building: "6th Main Rd,V Block,Anna Nagar",
     City_State_Pincode: "Chennai,Tamil Nadu 600014",
@@ -166,7 +185,7 @@ export const BranchMasterTableValues = [
   },
   {
     Sno: "5",
-    Branch: "Tea Boy",
+   
     Branch_Location: "Anna Nagar",
     Street_Building: "6th Main Rd,V Block,Anna Nagar",
     City_State_Pincode: "Chennai,Tamil Nadu 600014",
@@ -174,7 +193,7 @@ export const BranchMasterTableValues = [
   },
   {
     Sno: "6",
-    Branch: "Boys Cafe",
+   
     Branch_Location: "Anna Nagar",
     Street_Building: "6th Main Rd,V Block,Anna Nagar",
     City_State_Pincode: "Chennai,Tamil Nadu 600014",
@@ -182,7 +201,7 @@ export const BranchMasterTableValues = [
   },
   {
     Sno: "7",
-    Branch: "The Boys",
+   
     Branch_Location: "Anna Nagar",
     Street_Building: "6th Main Rd,V Block,Anna Nagar",
     City_State_Pincode: "Chennai,Tamil Nadu 600014",
@@ -190,7 +209,7 @@ export const BranchMasterTableValues = [
   },
   {
     Sno: "8",
-    Branch: "Mohan&Co",
+   
     Branch_Location: "Anna Nagar",
     Street_Building: "6th Main Rd,V Block,Anna Nagar",
     City_State_Pincode: "Chennai,Tamil Nadu 600014",
@@ -432,3 +451,17 @@ export const StaffDetailsTableValues = [
     Wages: "$100",
   },
 ];
+
+
+export const CompanyMasterTableValues = [
+  {
+    Sno: "1",
+    Company: "Empty Cafe",
+    
+    Street_Building: "6th Main Rd,V Block,Anna Nagar",
+    City_State_Pincode: "Chennai,Tamil Nadu 600014",
+    Country: "India",
+  }];
+
+
+  
